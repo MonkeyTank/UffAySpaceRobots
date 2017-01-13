@@ -18,9 +18,45 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="room1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helper.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="numPad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="anagram.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="numbers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="labyrinth.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="room1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="numPad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="anagram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="numbers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="labyrinth.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
