@@ -5,24 +5,24 @@
 #include "numPad.h"
 #include "labyrinth.h"
 
-#define ANA_X_MIN 942
-#define ANA_Y_MIN 838
-#define ANA_X_MAX 1106
-#define ANA_Y_MAX 924
+#define ANA_X 942
+#define ANA_Y 838
+#define ANA_WIDTH 164
+#define ANA_HEIGHT 86
 
-#define NUMPAD_X_MIN 251
-#define NUMPAD_Y_MIN 234
-#define NUMPAD_X_MAX 309
-#define NUMPAD_Y_MAX 329
+#define NUMPAD_X 251
+#define NUMPAD_Y 234
+#define NUMPAD_WIDTH 58
+#define NUMPAD_HEIGHT 95
 
-#define NUM_X_MIN 1122
-#define NUM_Y_MIN 214
-#define NUM_X_MAX 1274
-#define NUM_Y_MAX 440
+#define NUM_X 1122
+#define NUM_Y 214
+#define NUM_WIDTH 152
+#define NUM_HEIGHT 226
 
-#define LAB_X_MIN 1696
-#define LAB_Y_MIN 192
-#define LAB_X_MAX 1840
-#define LAB_Y_MAX 340
+#define LAB_X 1696
+#define LAB_Y 192
+#define LAB_WIDTH 1840
+#define LAB_HEIGHT 340
 
 void room1(SDL_Window* mainWindow);

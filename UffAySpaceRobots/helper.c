@@ -69,21 +69,40 @@ SDL_Texture* loadColorKeyImage(char* path, SDL_Renderer* renderer, Uint8 r, Uint
 	return newTexture;
 }
 
-void render(int x, int y, SDL_Texture* tex, SDL_Rect* clip, SDL_Renderer* renderer)
-{
+void render(int x, int y, SDL_Texture* tex, SDL_Rect* clip, SDL_Renderer* renderer){
 
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, 0, 0 };
 	
-
 	//Set rendering dimensions to clip dimensions
-	if (clip != NULL)
-	{
+	if (clip != NULL){
 		renderQuad.w = clip->w;
 		renderQuad.h = clip->h;
 	}
 	else abort();;
 
 	//Render to screen       /--------/ /TargetAreaOnScreen/
-	SDL_RenderCopy(renderer, tex, clip, &renderQuad);
+	SDL_RenderCopy(renderer, tex, NULL, &renderQuad);
+}
+
+//test if click is on button or not
+//x & y are position markers of mouse pointer
+int XYInRect(const SDL_Rect rect, int x, int y) {
+
+	if (x > rect.x && x < (rect.x + rect.w)
+		&& y > rect.y && y < (rect.y + rect.h)) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+
+}
+
+//set values for rect
+void setRect(SDL_Rect rect, int x, int y, int w, int h) {
+	rect.x = x;
+	rect.y = y;
+	rect.w = w;
+	rect.h = h;
 }

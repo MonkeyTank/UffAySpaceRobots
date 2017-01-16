@@ -2,9 +2,18 @@
 
 int numPad() {
 	
+	//create Hitboxes
+	SDL_Rect seven, one, three, esc, enter;
+
+	seven.x = SEVEN_X, seven.y = SEVEN_Y, seven.w = KEY_WIDTH, seven.h = KEY_HEIGHT;
+	one.x = ONE_X, one.y = ONE_Y, one.w = KEY_WIDTH, one.h = KEY_HEIGHT;
+	three.x = THREE_X, three.y = THREE_Y, three.w = KEY_WIDTH, three.h = KEY_HEIGHT;
+	esc.x = ESC_X, esc.y = ESC_Y, esc.w = KEY_WIDTH, esc.h = KEY_HEIGHT;
+	enter.x = ENTER_X, enter.y = ENTER_Y, enter.w = KEY_WIDTH, enter.h = KEY_HEIGHT;
+
 	//build window
 	SDL_Window* popup;
-	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 700, 900, SDL_WINDOW_SHOWN);
+	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 700, 900, SDL_WINDOW_BORDERLESS);
 	if (popup == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
 	}
@@ -15,9 +24,9 @@ int numPad() {
 	}
 
 	//set window focus
-	//if (0 != SDL_SetWindowInputFocus(popup)) {
-	//	fprintf(stderr, "Window Focus could not be changend! SDL_Error: %s", SDL_GetError());
-	//}
+	if (0 != SDL_SetWindowInputFocus(popup)) {
+		fprintf(stderr, "Window Focus could not be changend! SDL_Error: %s", SDL_GetError());
+	}
 
 	//show cursor
 	SDL_ShowCursor(SDL_ENABLE);
@@ -32,7 +41,7 @@ int numPad() {
 		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
 	}
 
-	SDL_Texture* pad = loadImage("images/room1/numPad.bmp", rendererPopup);
+	SDL_Texture* pad = loadImage("images/numpad.bmp", rendererPopup);
 
 	//variables to track clicks
 	SDL_Event mouse;
@@ -52,12 +61,12 @@ int numPad() {
 				x_button = mouse.button.x;
 				y_button = mouse.button.y;
 
-				if (x_button > 450 && x_button < 500 && y_button > 450 && y_button < 500) {
+				if ( XYInRect(esc, x_button, y_button) ) {
 
 					quit = 0;
 					SDL_DestroyWindow(popup);
 				}
-				else if (x_button > 0 && x_button < 125 && y_button > 0 && y_button < 125) {
+				else if (XYInRect(seven, x_button, y_button) ) {
 
 					mouse.type = NULL;
 
@@ -67,7 +76,7 @@ int numPad() {
 					x_button = mouse.button.x;
 					y_button = mouse.button.y;
 
-					if (x_button > 0 && x_button < 125 && y_button > 250 && y_button < 375) {
+					if ( XYInRect(one, x_button, y_button) ) {
 
 						mouse.type = NULL;
 
@@ -77,7 +86,7 @@ int numPad() {
 						x_button = mouse.button.x;
 						y_button = mouse.button.y;
 
-						if (x_button > 250 && x_button < 375 && y_button > 250 && y_button < 375) {
+						if ( XYInRect(three, x_button, y_button) ) {
 							
 							mouse.type = NULL;
 							
@@ -87,9 +96,21 @@ int numPad() {
 							x_button = mouse.button.x;
 							y_button = mouse.button.y;
 
-							if (x_button > 0 && x_button < 125 && y_button > 0 && y_button < 125) {
-								printf("4. x: %d, y: %d\n", x_button, y_button);
-								return 0;
+							if ( XYInRect(seven, x_button, y_button) ) {
+								
+								mouse.type = NULL;
+
+								while (SDL_MOUSEBUTTONDOWN != mouse.type) {
+									SDL_PollEvent(&mouse);
+								}
+								x_button = mouse.button.x;
+								y_button = mouse.button.y;
+
+								if ( XYInRect(enter, x_button, y_button)) {
+									
+									SDL_DestroyWindow(popup);
+									return 0;
+								}
 							}
 						}
 					}

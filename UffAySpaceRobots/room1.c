@@ -2,6 +2,16 @@
 
 void room1(SDL_Window* mainWindow) {
 
+	//create hitboxes
+	SDL_Rect anagramHB, labyrinthHB, numbersHB, numPadHB;
+	SDL_DisplayMode mode;
+	SDL_GetCurrentDisplayMode(0, &mode);
+
+	anagramHB.x = ANA_X, anagramHB.y =ANA_Y, anagramHB.w = ANA_WIDTH, anagramHB.h = ANA_HEIGHT;
+	labyrinthHB.x = LAB_X, labyrinthHB.y = LAB_Y , labyrinthHB.w = LAB_WIDTH, labyrinthHB.h = LAB_HEIGHT;
+	numbersHB.x = NUM_X, numbersHB.y = NUM_Y, numbersHB.w = NUM_WIDTH, numbersHB.h = NUM_HEIGHT;
+	numPadHB.x = NUMPAD_X, numPadHB.y = NUMPAD_Y, numPadHB.w = NUMPAD_WIDTH, numPadHB.h = NUMPAD_HEIGHT;
+
 	//create renderer for room1, hide the system cursor
 	SDL_Renderer* rendererRoom1;
 	rendererRoom1 = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
@@ -28,17 +38,14 @@ void room1(SDL_Window* mainWindow) {
 
 	//define starting positions for cursor and loaded graphics
 	SDL_Rect dimensions;
-
-	dimensions.x = 0;
-	dimensions.y = 0;
-	dimensions.w = 3840;
-	dimensions.h = 2160;
-
+	dimensions.x = 0, dimensions.y = 0, dimensions.w = 3840, dimensions.h = 2160;
+	
 	SDL_Event mouse;
 	int x = -960;
 	int y = -540;
 	int x_button = -960;
 	int y_button = -540;
+
 	//if right code in numPad is entered, quit is set to 0 and room1 is left
 	int quit = 1;
 
@@ -52,22 +59,22 @@ void room1(SDL_Window* mainWindow) {
 				x_button = mouse.button.x;
 				y_button = mouse.button.y;
 
-				if (x_button > NUMPAD_X_MIN && x_button < NUMPAD_X_MAX && y_button > NUMPAD_Y_MIN && y_button < NUMPAD_Y_MAX) {
+				if (XYInRect(numPadHB, x_button, y_button)) {
 
 					quit = numPad();
 					
 				}
-				else if (x_button > ANA_X_MIN && x_button < ANA_X_MAX && y_button > ANA_Y_MIN && y_button < ANA_Y_MAX) {
+				else if (XYInRect(anagramHB, x_button, y_button)) {
 					
 					anagram();				
 
 				}
-				else if (x_button > NUM_X_MIN && x_button < NUM_X_MAX && y_button > NUM_Y_MIN && y_button < NUM_Y_MAX) {
+				else if (XYInRect(numbersHB, x_button, y_button)) {
 
 					numbers();
 
 				}
-				else if (x_button > LAB_X_MIN && x_button < LAB_X_MAX && y_button > LAB_Y_MIN && y_button < LAB_Y_MAX) {
+				else if (XYInRect(labyrinthHB, x_button, y_button)) {
 
 					labyrinth();
 

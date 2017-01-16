@@ -14,10 +14,10 @@ void anagram() {
 		fprintf(stderr, "Fullscreen not possible! SDL_Error: %s", SDL_GetError());
 	}
 
-	//put window in focus
-	if (0 != SDL_SetWindowInputFocus(popup)) {
-		fprintf(stderr, "Window Focus could not be changend! SDL_Error: %s", SDL_GetError());
-	}
+	////put window in focus
+	//if (0 != SDL_SetWindowInputFocus(popup)) {
+	//	fprintf(stderr, "Window Focus could not be changend! SDL_Error: %s", SDL_GetError());
+	//}
 
 	//show cursor in window
 	SDL_ShowCursor(SDL_ENABLE);
@@ -51,8 +51,8 @@ void anagram() {
 	//set dimensions for backArrow hitbox
 	SDL_Rect dimensions;
 
-	dimensions.x = 0;
-	dimensions.y = 0;
+	dimensions.x = 450;
+	dimensions.y = 450;
 	dimensions.w = 50;
 	dimensions.h = 50;
 
@@ -65,7 +65,7 @@ void anagram() {
 				y_button = mouse.button.y;
 
 	//click on backArrow hitbox -> exit panel Anagram
-				if (x_button > 450 && x_button < 500 && y_button > 450 && y_button < 500) {
+				if ( XYInRect(dimensions, x_button, y_button) ) {
 
 					quit = 0;
 					SDL_DestroyWindow(popup);
