@@ -10,3 +10,5 @@
 
 #include "helper.h"
 #include "room1.h"
+#include "room2.h"
+#include "room3.h"

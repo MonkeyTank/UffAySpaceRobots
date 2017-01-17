@@ -14,6 +14,8 @@ int main() {
 	}
 
 	room1(mainWindow);
+	room2(mainWindow);
+	room3(mainWindow);
 
 	SDL_DestroyWindow(mainWindow);
 	SDL_Quit();
