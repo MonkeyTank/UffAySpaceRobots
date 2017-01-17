@@ -93,8 +93,8 @@ void labyrinth() {
 
 			SDL_RenderClear(rendererPopup);
 			SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
-			render(dimensionsArrow.x, dimensionsArrow.y, arrow, &dimensionsArrow, rendererPopup);
 			render(x, y, light, &dimensions, rendererPopup);
+			render(dimensionsArrow.x, dimensionsArrow.y, arrow, &dimensionsArrow, rendererPopup);
 			SDL_RenderPresent(rendererPopup);
 		}
 	}

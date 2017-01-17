@@ -10,9 +10,24 @@ void flashback() {
 	char* string; 
 	int cnt = 0;
 
-	SDL_Init(SDL_INIT_VIDEO); // init video
+	Mix_Music *typing = NULL;
 
-							  // create the window like normal
+	//init sdl mixer
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) { 
+		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());  
+	}
+
+	//load music
+	typing = Mix_LoadMUS("sounds/typing.mp3");
+	if (NULL == typing) {
+		printf("Failed to load low sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+	}
+	Mix_PlayMusic(typing, -1);
+
+	// init video
+	SDL_Init(SDL_INIT_VIDEO); 
+
+	// create the window
 	window = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 800, SDL_WINDOW_BORDERLESS);
 
 	// Initialize SDL_ttf library
@@ -63,6 +78,10 @@ void flashback() {
 		}
 		
 	}
+
+	Mix_HaltMusic();
+	Mix_FreeMusic(typing);
+	typing = NULL;
 	SDL_FreeSurface(text);
 	SDL_DestroyWindow(window);
 }

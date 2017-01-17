@@ -21,6 +21,22 @@ void room1(SDL_Window* mainWindow) {
 
 	SDL_ShowCursor(SDL_DISABLE);
 
+	///////////////////////////////////////////////MUSIC//////////////////////////////////////////////////
+	Mix_Music *backgroundMusic = NULL;
+
+	//init sdl mixer
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+	}
+
+	//load music
+	backgroundMusic = Mix_LoadMUS("sounds/background.mp3");
+
+	if (NULL == backgroundMusic) {
+		printf("Failed to load low sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+	}
+
+
 	//load graphics for background and pocket light
 	SDL_Texture* background;
 	background = loadImage("images/room1/room1Background.bmp", rendererRoom1);
@@ -55,6 +71,7 @@ void room1(SDL_Window* mainWindow) {
 	SDL_RenderPresent(rendererRoom1);
 
 	flashback();
+	Mix_PlayMusic(backgroundMusic, -1);
 
 	while (quit) {
 	//constantly polling mouse to move pocket light graphic with cursor
@@ -105,6 +122,9 @@ void room1(SDL_Window* mainWindow) {
 			SDL_RenderPresent(rendererRoom1);
 		}
 	}
+	Mix_HaltMusic();
+	Mix_FreeMusic(backgroundMusic);
+	backgroundMusic = NULL;
 	SDL_DestroyRenderer(rendererRoom1);
 	return;
 }
