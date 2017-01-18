@@ -2,6 +2,8 @@
 
 int numPad() {
 	
+	int warnings = 0;
+
 	//create Hitboxes
 	SDL_Rect seven, one, three, esc, enter;
 
@@ -23,10 +25,10 @@ int numPad() {
 		fprintf(stderr, "Fullscreen not possible! SDL_Error: %s", SDL_GetError());
 	}
 
-	//set window focus
-	if (0 != SDL_SetWindowInputFocus(popup)) {
-		fprintf(stderr, "Window Focus could not be changend! SDL_Error: %s", SDL_GetError());
-	}
+	////set window focus
+	//if (0 != SDL_SetWindowInputFocus(popup)) {
+	//	fprintf(stderr, "Window Focus could not be changend! SDL_Error: %s", SDL_GetError());
+	//}
 
 	//show cursor
 	SDL_ShowCursor(SDL_ENABLE);
@@ -50,91 +52,81 @@ int numPad() {
 	int x_button = 250;
 	int y_button = 250;
 
-	//quit is set by clicking on backArrow hitbox
-	int quit = 1;
+	while (1) {
+		SDL_PollEvent(&mouse);
+		if (SDL_MOUSEBUTTONDOWN == mouse.type){
 
-	while (quit) {
-		while (SDL_PollEvent(&mouse)) {
-			switch (mouse.type) {
+			x_button = mouse.button.x;
+			y_button = mouse.button.y;
 
-			case SDL_MOUSEBUTTONDOWN:
+		//on esc leave window
+			if (XYInRect(esc, x_button, y_button)) {
+				//hide cursor and delete second one
+				SDL_FreeCursor(cursor);
+				SDL_ShowCursor(SDL_DISABLE);
+				SDL_DestroyWindow(popup);
+				return 0;
+			}
+
+		//code for getting to the next room
+			if (XYInRect(one, x_button, y_button)) {
+
+				mouse.type = NULL;
+				mouse = getClick(mouse);
 				x_button = mouse.button.x;
 				y_button = mouse.button.y;
 
-				if ( XYInRect(esc, x_button, y_button) ) {
-
-					quit = 0;
-					SDL_DestroyWindow(popup);
-				}
-				else if (XYInRect(seven, x_button, y_button) ) {
+				if (XYInRect(one, x_button, y_button)) {
 
 					mouse.type = NULL;
-
-					while (SDL_MOUSEBUTTONDOWN != mouse.type) {
-						SDL_PollEvent(&mouse);
-					}
+					mouse = getClick(mouse);
 					x_button = mouse.button.x;
 					y_button = mouse.button.y;
 
-					if ( XYInRect(one, x_button, y_button) ) {
+					if (XYInRect(one, x_button, y_button)) {
 
 						mouse.type = NULL;
-
-						while (SDL_MOUSEBUTTONDOWN != mouse.type) {
-							SDL_PollEvent(&mouse);
-						}
+						mouse = getClick(mouse);
 						x_button = mouse.button.x;
 						y_button = mouse.button.y;
 
-						if ( XYInRect(three, x_button, y_button) ) {
-							
+						if (XYInRect(one, x_button, y_button)) {
+
 							mouse.type = NULL;
-							
-							while (SDL_MOUSEBUTTONDOWN != mouse.type) {
-								SDL_PollEvent(&mouse);
-							}
+							mouse = getClick(mouse);
 							x_button = mouse.button.x;
 							y_button = mouse.button.y;
 
-							if ( XYInRect(seven, x_button, y_button) ) {
-								
-								mouse.type = NULL;
+							if (XYInRect(enter, x_button, y_button)) {
 
-								while (SDL_MOUSEBUTTONDOWN != mouse.type) {
-									SDL_PollEvent(&mouse);
-								}
-								x_button = mouse.button.x;
-								y_button = mouse.button.y;
-
-								if ( XYInRect(enter, x_button, y_button)) {
-									
-									//flashback2();
-									SDL_DestroyWindow(popup);
-									return 0;
-								}
+								SDL_DestroyRenderer(rendererPopup);
+								SDL_DestroyWindow(popup);
+								return 1;
 							}
 						}
 					}
 				}
-				break;
-
-			//case SDL_MOUSEMOTION:
-			//	x = mouse.motion.x - 1920;
-			//	y = mouse.motion.y - 1080;
-			//	break;
-
-			default:
-				break;
 			}
 
-			SDL_RenderClear(rendererPopup);
-			SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
-			//render(x, y, light, &dimensions, rendererPopup);
-			SDL_RenderPresent(rendererPopup);
+		//code is not right, but enter has been pressed:
+		//two warnings are issued and after third wrong try death awaits
+			if (XYInRect(enter, x_button, y_button)) {
+
+		//warning returns 0 on death
+				if (0 == warning(warnings)) {
+					SDL_DestroyWindow(popup);
+					return -1;
+				}
+				warnings++;
+				mouse.button.x = 0;
+				mouse.button.y = 0;
+
+			}
+			mouse.type = NULL;
 		}
+		SDL_RenderClear(rendererPopup);
+		SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
+		SDL_RenderPresent(rendererPopup);
+		
 	}
-	//hide cursor and delete second one
-	SDL_FreeCursor(cursor);
-	SDL_ShowCursor(SDL_DISABLE);
-	return 1;
 }

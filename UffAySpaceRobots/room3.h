@@ -4,6 +4,7 @@
 #include "numbers.h"
 #include "numPad.h"
 #include "labyrinth.h"
+#include "flashback3.h"
 
 #define ANA_X 942
 #define ANA_Y 838
@@ -25,4 +26,4 @@
 #define LAB_WIDTH 1840
 #define LAB_HEIGHT 340
 
-void room3(SDL_Window* mainWindow);
+int room3(SDL_Window* mainWindow);

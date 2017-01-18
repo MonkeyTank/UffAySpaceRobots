@@ -1,6 +1,6 @@
 #include "room1.h"
 
-void room1(SDL_Window* mainWindow) {
+int room1(SDL_Window* mainWindow) {
 
 	//create hitboxes
 	SDL_Rect anagramHB, labyrinthHB, numbersHB, numPadHB;
@@ -62,18 +62,17 @@ void room1(SDL_Window* mainWindow) {
 	int x_button = -960;
 	int y_button = -540;
 
-	//if right code in numPad is entered, quit is set to 0 and room1 is left
-	int quit = 1;
 
 	SDL_RenderClear(rendererRoom1);
 	SDL_RenderCopy(rendererRoom1, background, NULL, NULL);
 	render(x, y, light, &dimensions, rendererRoom1);
 	SDL_RenderPresent(rendererRoom1);
 
-	flashback();
+	flashback1();
 	Mix_PlayMusic(backgroundMusic, -1);
+	int leave;
 
-	while (quit) {
+	while (1) {
 	//constantly polling mouse to move pocket light graphic with cursor
 		while (SDL_PollEvent(&mouse)) {
 			switch ( mouse.type ) {
@@ -84,8 +83,24 @@ void room1(SDL_Window* mainWindow) {
 				y_button = mouse.button.y;
 
 				if (XYInRect(numPadHB, x_button, y_button)) {
+	
+	//numPad() returns 0 on esc, 1 on success and -1 on failure
+					leave = numPad();
 
-					quit = numPad();
+					if (-1 == leave) {
+						Mix_HaltMusic();
+						Mix_FreeMusic(backgroundMusic);
+						backgroundMusic = NULL;
+						SDL_DestroyRenderer(rendererRoom1);
+						return 0;
+					}
+					else if (1 == leave) {
+						Mix_HaltMusic();
+						Mix_FreeMusic(backgroundMusic);
+						backgroundMusic = NULL;
+						SDL_DestroyRenderer(rendererRoom1);
+						return 1;
+					}
 					
 				}
 				else if (XYInRect(anagramHB, x_button, y_button)) {
@@ -122,10 +137,5 @@ void room1(SDL_Window* mainWindow) {
 			SDL_RenderPresent(rendererRoom1);
 		}
 	}
-	Mix_HaltMusic();
-	Mix_FreeMusic(backgroundMusic);
-	backgroundMusic = NULL;
-	SDL_DestroyRenderer(rendererRoom1);
-	return;
 }
 	

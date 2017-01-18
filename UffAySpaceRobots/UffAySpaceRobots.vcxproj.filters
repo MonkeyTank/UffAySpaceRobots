@@ -42,7 +42,19 @@
     <ClCompile Include="room3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="flashback.c">
+    <ClCompile Include="flashback2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="flashback3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="flashback1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="die.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="warning.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,7 +86,19 @@
     <ClInclude Include="room3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="flashback.h">
+    <ClInclude Include="flashback2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="flashback3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="flashback1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="die.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="warning.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

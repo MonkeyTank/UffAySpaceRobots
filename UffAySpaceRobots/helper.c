@@ -1,6 +1,5 @@
 #include "helper.h"
-
-//helper function to create untouched texture from image
+//////////////////////////////////////helper function to create untouched texture from image/////////////////////////////////////
 SDL_Texture* loadImage(char* path, SDL_Renderer* renderer) {
 
 	SDL_Surface* imagetmp;
@@ -172,4 +171,12 @@ char* ReadFile(char *filename)
 	}
 
 	return buffer;
+}
+
+SDL_Event getClick(SDL_Event mouse) {
+
+	while (SDL_MOUSEBUTTONDOWN != mouse.type) {
+		SDL_PollEvent(&mouse);
+	}
+	return mouse;
 }

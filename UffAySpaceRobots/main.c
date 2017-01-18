@@ -1,6 +1,7 @@
 #include "main.h"
 
 int main() {
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
 		fprintf(stderr, "Error, SDL could not be initialised because: \n");
 		fprintf(stderr, SDL_GetError());
@@ -12,13 +13,45 @@ int main() {
 	if (mainWindow == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
 	}
+	
+	RESTART:
 
-	room1(mainWindow);
-	room2(mainWindow);
-	room3(mainWindow);
+	//rooms return 0 on death and 1 on success
+	//die returns 0 on exit and 1 on restart
+	if (!room1(mainWindow)) {
+		if (die(mainWindow)) {
+			goto RESTART;
+		}
+		else {
+			Mix_Quit();
+			SDL_DestroyWindow(mainWindow);
+			SDL_Quit();
+			exit(EXIT_SUCCESS);
+		}
+	}
 
-	Mix_Quit();
-	SDL_DestroyWindow(mainWindow);
-	SDL_Quit();
-	return 0;
+	if (!room2(mainWindow)) {
+		if (die(mainWindow)) {
+			goto RESTART;
+		}
+		else {
+			Mix_Quit();
+			SDL_DestroyWindow(mainWindow);
+			SDL_Quit();
+			exit(EXIT_SUCCESS);
+		}
+	}
+
+	if (!room3(mainWindow)) {
+		if (die(mainWindow)) {
+			goto RESTART;
+		}
+		else {
+			Mix_Quit();
+			SDL_DestroyWindow(mainWindow);
+			SDL_Quit();
+			exit(EXIT_SUCCESS);
+		}
+	}
+	exit(EXIT_SUCCESS);
 }

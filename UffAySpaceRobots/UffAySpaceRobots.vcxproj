@@ -20,7 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="anagram.c" />
-    <ClCompile Include="flashback.c" />
+    <ClCompile Include="die.c" />
+    <ClCompile Include="flashback1.c" />
+    <ClCompile Include="flashback2.c" />
+    <ClCompile Include="flashback3.c" />
     <ClCompile Include="helper.c" />
     <ClCompile Include="labyrinth.c" />
     <ClCompile Include="main.c" />
@@ -29,10 +32,14 @@
     <ClCompile Include="room1.c" />
     <ClCompile Include="room2.c" />
     <ClCompile Include="room3.c" />
+    <ClCompile Include="warning.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anagram.h" />
-    <ClInclude Include="flashback.h" />
+    <ClInclude Include="die.h" />
+    <ClInclude Include="flashback1.h" />
+    <ClInclude Include="flashback2.h" />
+    <ClInclude Include="flashback3.h" />
     <ClInclude Include="helper.h" />
     <ClInclude Include="labyrinth.h" />
     <ClInclude Include="main.h" />
@@ -41,6 +48,7 @@
     <ClInclude Include="room1.h" />
     <ClInclude Include="room2.h" />
     <ClInclude Include="room3.h" />
+    <ClInclude Include="warning.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{54FB983F-7596-4255-A2E6-7048350579D9}</ProjectGuid>
