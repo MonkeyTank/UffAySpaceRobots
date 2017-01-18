@@ -9,6 +9,7 @@ void flashback() {
 	char* fullString = ReadFile("text/flashback.txt");
 	char* string; 
 	int cnt = 0;
+	int quit = 1;
 
 	Mix_Music *typing = NULL;
 
@@ -62,7 +63,7 @@ void flashback() {
 			800);
 
 		// let's just show some classic code for reference
-
+		SDL_FillRect(screen, NULL, 0x000000);
 		SDL_BlitSurface(text, NULL, screen, NULL); // blit it to the screen
 		
 
@@ -72,11 +73,34 @@ void flashback() {
 		// show image for 80 ms
 		SDL_Delay(80);
 
+
+		//////////////////////////////////////Skip text on tap any key////////////////////////////////
 		SDL_PollEvent(&end);
 		if (SDL_KEYDOWN == end.type) {
+
+			end.type = NULL;
+			SDL_FillRect(screen, NULL, 0x000000);
+
+			text = TTF_RenderText_Blended_Wrapped(font,
+				fullString,
+				text_color,
+				800);
+			SDL_BlitSurface(text, NULL, screen, NULL); // blit it to the screen
+			SDL_UpdateWindowSurface(window);
+			Mix_HaltMusic();
+
+ 			while (1) {
+				SDL_PollEvent(&end);
+ 				if (SDL_KEYDOWN == end.type) {
+					quit = 0;
+					break;
+				}
+			}
 			break;
+			
 		}
-		
+		//if(!quit)
+		//	break;
 	}
 
 	Mix_HaltMusic();
