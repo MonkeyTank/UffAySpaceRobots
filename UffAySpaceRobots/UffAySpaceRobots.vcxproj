@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="anagram.c" />
+    <ClCompile Include="colors.c" />
     <ClCompile Include="die.c" />
     <ClCompile Include="flashback1.c" />
     <ClCompile Include="flashback2.c" />
@@ -27,8 +28,10 @@
     <ClCompile Include="helper.c" />
     <ClCompile Include="labyrinth.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="numPad2.c" />
+    <ClCompile Include="numPad3.c" />
     <ClCompile Include="numbers.c" />
-    <ClCompile Include="numPad.c" />
+    <ClCompile Include="numPad1.c" />
     <ClCompile Include="room1.c" />
     <ClCompile Include="room2.c" />
     <ClCompile Include="room3.c" />
@@ -36,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anagram.h" />
+    <ClInclude Include="colors.h" />
     <ClInclude Include="die.h" />
     <ClInclude Include="flashback1.h" />
     <ClInclude Include="flashback2.h" />
@@ -44,7 +48,9 @@
     <ClInclude Include="labyrinth.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="numbers.h" />
-    <ClInclude Include="numPad.h" />
+    <ClInclude Include="numPad1.h" />
+    <ClInclude Include="numPad2.h" />
+    <ClInclude Include="numPad3.h" />
     <ClInclude Include="room1.h" />
     <ClInclude Include="room2.h" />
     <ClInclude Include="room3.h" />

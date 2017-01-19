@@ -14,11 +14,6 @@ void labyrinth() {
 		fprintf(stderr, "Fullscreen not possible! SDL_Error: %s", SDL_GetError());
 	}
 
-	//put window in focus
-	if (0 != SDL_SetWindowInputFocus(popup)) {
-		fprintf(stderr, "Window Focus could not be changend! SDL_Error: %s", SDL_GetError());
-	}
-
 	//show cursor in window
 	SDL_ShowCursor(SDL_ENABLE);
 	SDL_Cursor* cursor;

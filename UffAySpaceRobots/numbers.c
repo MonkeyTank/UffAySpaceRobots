@@ -84,7 +84,7 @@ void numbers() {
 
 			SDL_RenderClear(rendererPopup);
 			SDL_RenderCopy(rendererPopup, row, NULL, NULL);
-			SDL_RenderCopy(rendererPopup, arrow, NULL, &dimensions);
+			render(dimensions.x, dimensions.y, arrow, &dimensions, rendererPopup);
 			SDL_RenderPresent(rendererPopup);
 		}
 	}

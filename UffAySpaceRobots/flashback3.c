@@ -82,7 +82,7 @@ void flashback3() {
 		SDL_PollEvent(&end);
 		if (SDL_KEYDOWN == end.type) {
 
-			end.type = NULL;
+			end.type = 0;
 			SDL_FillRect(screen, NULL, 0x000000);
 
 			text = TTF_RenderText_Blended_Wrapped(font,

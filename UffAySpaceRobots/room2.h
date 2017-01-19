@@ -1,15 +1,15 @@
 #pragma once
 #include "helper.h"
-#include "anagram.h"
+#include "colors.h"
 #include "numbers.h"
-#include "numPad.h"
+#include "numPad2.h"
 #include "labyrinth.h"
 #include "flashback2.h"
 
-#define ANA_X 942
-#define ANA_Y 838
-#define ANA_WIDTH 164
-#define ANA_HEIGHT 86
+#define COLOR_X 953
+#define COLOR_Y 424
+#define COLOR_WIDTH 540
+#define COLOR_HEIGHT 53
 
 #define NUMPAD_X 251
 #define NUMPAD_Y 234

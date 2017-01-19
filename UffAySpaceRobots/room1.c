@@ -85,7 +85,7 @@ int room1(SDL_Window* mainWindow) {
 				if (XYInRect(numPadHB, x_button, y_button)) {
 	
 	//numPad() returns 0 on esc, 1 on success and -1 on failure
-					leave = numPad();
+					leave = numPad1();
 
 					if (-1 == leave) {
 						Mix_HaltMusic();

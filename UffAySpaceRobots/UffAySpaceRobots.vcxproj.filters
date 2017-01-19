@@ -13,49 +13,82 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\room1">
+      <UniqueIdentifier>{30c86fb9-4190-4161-a0a9-7340b83a6517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\room2">
+      <UniqueIdentifier>{e26ca70e-e5e5-4e6b-b65d-ed91bb9a8921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\room1">
+      <UniqueIdentifier>{e3f64c99-52a2-4023-80a8-eb821850b1f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\room2">
+      <UniqueIdentifier>{ac0ee659-17f2-4719-ad2e-093001e02959}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\room3">
+      <UniqueIdentifier>{af89fa16-14e6-4109-a24a-f1065fd702a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\room3">
+      <UniqueIdentifier>{a81c6f26-375a-45e4-a5c9-b055fdc3b500}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\helper">
+      <UniqueIdentifier>{a4b562da-fb6f-411c-8636-ecbcf43b8d9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\helper">
+      <UniqueIdentifier>{72289f9f-22a4-411e-ad88-01a508a861f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="room1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="helper.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="numPad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="anagram.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="numbers.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="labyrinth.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="room2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="room3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="flashback2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="flashback3.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\room1</Filter>
     </ClCompile>
     <ClCompile Include="flashback1.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\room1</Filter>
+    </ClCompile>
+    <ClCompile Include="labyrinth.c">
+      <Filter>Source Files\room1</Filter>
+    </ClCompile>
+    <ClCompile Include="numbers.c">
+      <Filter>Source Files\room1</Filter>
+    </ClCompile>
+    <ClCompile Include="room1.c">
+      <Filter>Source Files\room1</Filter>
+    </ClCompile>
+    <ClCompile Include="room2.c">
+      <Filter>Source Files\room2</Filter>
+    </ClCompile>
+    <ClCompile Include="flashback2.c">
+      <Filter>Source Files\room2</Filter>
+    </ClCompile>
+    <ClCompile Include="flashback3.c">
+      <Filter>Source Files\room3</Filter>
+    </ClCompile>
+    <ClCompile Include="room3.c">
+      <Filter>Source Files\room3</Filter>
     </ClCompile>
     <ClCompile Include="die.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="helper.c">
+      <Filter>Source Files\helper</Filter>
     </ClCompile>
     <ClCompile Include="warning.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="numPad1.c">
+      <Filter>Source Files\room1</Filter>
+    </ClCompile>
+    <ClCompile Include="numPad2.c">
+      <Filter>Source Files\room2</Filter>
+    </ClCompile>
+    <ClCompile Include="numPad3.c">
+      <Filter>Source Files\room3</Filter>
+    </ClCompile>
+    <ClCompile Include="colors.c">
+      <Filter>Source Files\room2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,43 +96,52 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="room1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="helper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="numPad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="anagram.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="numbers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="labyrinth.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="room2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="room3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="flashback2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="flashback3.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\room1</Filter>
     </ClInclude>
     <ClInclude Include="flashback1.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\room1</Filter>
+    </ClInclude>
+    <ClInclude Include="anagram.h">
+      <Filter>Header Files\room1</Filter>
+    </ClInclude>
+    <ClInclude Include="labyrinth.h">
+      <Filter>Header Files\room1</Filter>
+    </ClInclude>
+    <ClInclude Include="numbers.h">
+      <Filter>Header Files\room1</Filter>
+    </ClInclude>
+    <ClInclude Include="room2.h">
+      <Filter>Header Files\room2</Filter>
+    </ClInclude>
+    <ClInclude Include="flashback2.h">
+      <Filter>Header Files\room2</Filter>
+    </ClInclude>
+    <ClInclude Include="flashback3.h">
+      <Filter>Header Files\room3</Filter>
+    </ClInclude>
+    <ClInclude Include="room3.h">
+      <Filter>Header Files\room3</Filter>
     </ClInclude>
     <ClInclude Include="die.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="helper.h">
+      <Filter>Header Files\helper</Filter>
     </ClInclude>
     <ClInclude Include="warning.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="numPad2.h">
+      <Filter>Header Files\room2</Filter>
+    </ClInclude>
+    <ClInclude Include="numPad1.h">
+      <Filter>Header Files\room1</Filter>
+    </ClInclude>
+    <ClInclude Include="numPad3.h">
+      <Filter>Header Files\room3</Filter>
+    </ClInclude>
+    <ClInclude Include="colors.h">
+      <Filter>Header Files\room2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

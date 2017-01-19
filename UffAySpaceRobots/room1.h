@@ -2,7 +2,7 @@
 #include "helper.h"
 #include "anagram.h"
 #include "numbers.h"
-#include "numPad.h"
+#include "numPad1.h"
 #include "labyrinth.h"
 #include "flashback1.h"
 

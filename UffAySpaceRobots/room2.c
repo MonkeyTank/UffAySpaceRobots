@@ -3,11 +3,11 @@
 int room2(SDL_Window* mainWindow) {
 
 	//create hitboxes
-	SDL_Rect anagramHB, labyrinthHB, numbersHB, numPadHB;
+	SDL_Rect colorHB, labyrinthHB, numbersHB, numPadHB;
 	SDL_DisplayMode mode;
 	SDL_GetCurrentDisplayMode(0, &mode);
 
-	anagramHB.x = ANA_X, anagramHB.y = ANA_Y, anagramHB.w = ANA_WIDTH, anagramHB.h = ANA_HEIGHT;
+	colorHB.x = COLOR_X, colorHB.y = COLOR_Y, colorHB.w = COLOR_WIDTH, colorHB.h = COLOR_HEIGHT;
 	labyrinthHB.x = LAB_X, labyrinthHB.y = LAB_Y, labyrinthHB.w = LAB_WIDTH, labyrinthHB.h = LAB_HEIGHT;
 	numbersHB.x = NUM_X, numbersHB.y = NUM_Y, numbersHB.w = NUM_WIDTH, numbersHB.h = NUM_HEIGHT;
 	numPadHB.x = NUMPAD_X, numPadHB.y = NUMPAD_Y, numPadHB.w = NUMPAD_WIDTH, numPadHB.h = NUMPAD_HEIGHT;
@@ -85,7 +85,7 @@ int room2(SDL_Window* mainWindow) {
 				if (XYInRect(numPadHB, x_button, y_button)) {
 
 	//numPad() returns 0 on esc, 1 on success and -1 on failure
-					leave = numPad();
+					leave = numPad2();
 
 					if (-1 == leave) {
 						Mix_HaltMusic();
@@ -103,9 +103,9 @@ int room2(SDL_Window* mainWindow) {
 					}
 
 				}
-				else if (XYInRect(anagramHB, x_button, y_button)) {
+				else if (XYInRect(colorHB, x_button, y_button)) {
 
-					anagram();
+					colors();
 
 				}
 				else if (XYInRect(numbersHB, x_button, y_button)) {

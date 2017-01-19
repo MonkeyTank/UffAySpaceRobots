@@ -4,7 +4,7 @@ void anagram() {
 	
 	//build window
 	SDL_Window* popup;
-	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 500, 500, SDL_WINDOW_SHOWN);
+	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1600, 400, SDL_WINDOW_BORDERLESS);
 	if (popup == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
 	}
@@ -51,8 +51,8 @@ void anagram() {
 	//set dimensions for backArrow hitbox
 	SDL_Rect dimensions;
 
-	dimensions.x = 450;
-	dimensions.y = 450;
+	dimensions.x = 1550;
+	dimensions.y = 350;
 	dimensions.w = 50;
 	dimensions.h = 50;
 
@@ -83,7 +83,7 @@ void anagram() {
 
 			SDL_RenderClear(rendererPopup);
 			SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
-			render(450, 450, arrow, &dimensions, rendererPopup);
+			render(dimensions.x, dimensions.y, arrow, &dimensions, rendererPopup);
 			SDL_RenderPresent(rendererPopup);
 		}
 	}
