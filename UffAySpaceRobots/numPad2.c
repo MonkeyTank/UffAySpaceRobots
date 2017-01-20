@@ -4,15 +4,6 @@ int numPad2() {
 
 	int warnings = 0;
 
-	//create Hitboxes
-	SDL_Rect seven, one, three, esc, enter;
-
-	seven.x = SEVEN_X, seven.y = SEVEN_Y, seven.w = KEY_WIDTH, seven.h = KEY_HEIGHT;
-	one.x = ONE_X, one.y = ONE_Y, one.w = KEY_WIDTH, one.h = KEY_HEIGHT;
-	three.x = THREE_X, three.y = THREE_Y, three.w = KEY_WIDTH, three.h = KEY_HEIGHT;
-	esc.x = ESC_X, esc.y = ESC_Y, esc.w = KEY_WIDTH, esc.h = KEY_HEIGHT;
-	enter.x = ENTER_X, enter.y = ENTER_Y, enter.w = KEY_WIDTH, enter.h = KEY_HEIGHT;
-
 	//build window
 	SDL_Window* popup;
 	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 700, 900, SDL_WINDOW_BORDERLESS);
@@ -24,7 +15,6 @@ int numPad2() {
 	if (0 != SDL_SetWindowFullscreen(popup, 0)) {
 		fprintf(stderr, "Fullscreen not possible! SDL_Error: %s", SDL_GetError());
 	}
-
 
 	//show cursor
 	SDL_ShowCursor(SDL_ENABLE);
@@ -42,89 +32,92 @@ int numPad2() {
 	SDL_Texture* pad = loadImage("images/numpad/numpad.bmp", rendererPopup);
 
 	//variables to track clicks
-	SDL_Event mouse;
-	//int x = -960;
-	//int y = -540;
+	SDL_Event keys;
+	SDL_Keysym press;
+
+	//quit is set by clicking on backArrow hitbox
+	int quit = 1;
+
 	int x_button = 250;
 	int y_button = 250;
 
-	while (1) {
-		while (SDL_PollEvent(&mouse) != 0);
+	while (quit) {
+		while (SDL_PollEvent(&keys)) {
+			switch (keys.type) {
 
-		if (SDL_MOUSEBUTTONDOWN == mouse.type) {
+			case SDL_KEYDOWN:
+				press = keys.key.keysym;
 
-			x_button = mouse.button.x;
-			y_button = mouse.button.y;
+				if (SDLK_ESCAPE == press.sym) {
 
-			//on esc leave window
-			if (XYInRect(esc, x_button, y_button)) {
-				//hide cursor and delete second one
-				SDL_FreeCursor(cursor);
-				SDL_ShowCursor(SDL_DISABLE);
-				SDL_DestroyWindow(popup);
-				return 0;
-			}
+					quit = 0;
+					SDL_DestroyWindow(popup);
+					return 0;
+				}
+				
 
-			//code for getting to the next room
-			if (XYInRect(one, x_button, y_button)) {
+				//enter code
+				if (SDLK_9 == press.sym || SDLK_KP_9 == press.sym) {
 
-				mouse.type = 0;
-				mouse = getClick(mouse);
-				x_button = mouse.button.x;
-				y_button = mouse.button.y;
+					keys.type = 0;
+					keys = getKey(keys);
+					press = keys.key.keysym;
 
-				if (XYInRect(one, x_button, y_button)) {
+					if (SDLK_1 == press.sym || SDLK_KP_1 == press.sym) {
+						keys.type = 0;
+						keys = getKey(keys);
+						press = keys.key.keysym;
 
-					mouse.type = 0;
-					mouse = getClick(mouse);
-					x_button = mouse.button.x;
-					y_button = mouse.button.y;
+						if (SDLK_1 == press.sym || SDLK_KP_1 == press.sym) {
+							keys.type = 0;
+							keys = getKey(keys);
+							press = keys.key.keysym;
 
-					if (XYInRect(one, x_button, y_button)) {
+							if (SDLK_4 == press.sym || SDLK_KP_4 == press.sym) {
+								keys.type = 0;
+								keys = getKey(keys);
+								press = keys.key.keysym;
 
-						mouse.type = 0;
-						mouse = getClick(mouse);
-						x_button = mouse.button.x;
-						y_button = mouse.button.y;
+								if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
 
-						if (XYInRect(one, x_button, y_button)) {
+									SDL_DestroyRenderer(rendererPopup);
+									SDL_DestroyWindow(popup);
+									return 1;
 
-							mouse.type = 0;
-							mouse = getClick(mouse);
-							x_button = mouse.button.x;
-							y_button = mouse.button.y;
-
-							if (XYInRect(enter, x_button, y_button)) {
-
-								SDL_DestroyRenderer(rendererPopup);
-								SDL_DestroyWindow(popup);
-								return 1;
+								}
 							}
 						}
 					}
 				}
-			}
 
-			//code is not right, but enter has been pressed:
-			//two warnings are issued and after third wrong try death awaits
-			if (XYInRect(enter, x_button, y_button)) {
-				Mix_PauseMusic();
-				//warning returns 0 on death
-				if (0 == warning(warnings)) {
-					SDL_DestroyWindow(popup);
-					return -1;
+				if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
+					Mix_PauseMusic();
+					//warning returns 0 on death
+					if (0 == warning(warnings)) {
+						SDL_DestroyWindow(popup);
+						return -1;
+					}
+					Mix_ResumeMusic();
+					warnings++;
+					break;
 				}
-				Mix_ResumeMusic();
-				warnings++;
-				mouse.button.x = 0;
-				mouse.button.y = 0;
+				
 
+				/*case SDL_MOUSEMOTION:
+				x = mouse.motion.x - 1920;
+				y = mouse.motion.y - 1080;
+				break;*/
+
+			default:
+				break;
 			}
-			SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
-		}
-		SDL_RenderClear(rendererPopup);
-		SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
-		SDL_RenderPresent(rendererPopup);
 
+			SDL_RenderClear(rendererPopup);
+			SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
+			SDL_RenderPresent(rendererPopup);
+		}
 	}
+	//hide cursor and delete second one
+	SDL_FreeCursor(cursor);
+	SDL_ShowCursor(SDL_DISABLE);
 }

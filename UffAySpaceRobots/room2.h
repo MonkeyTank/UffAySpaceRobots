@@ -1,7 +1,7 @@
 #pragma once
 #include "helper.h"
 #include "colors.h"
-#include "numbers.h"
+#include "mensa.h"
 #include "numPad2.h"
 #include "labyrinth.h"
 #include "flashback2.h"
@@ -11,10 +11,10 @@
 #define COLOR_WIDTH 540
 #define COLOR_HEIGHT 53
 
-#define NUMPAD_X 251
-#define NUMPAD_Y 234
-#define NUMPAD_WIDTH 58
-#define NUMPAD_HEIGHT 95
+#define MENSA_X 1175
+#define MENSA_Y 742
+#define MENSA_WIDTH 101
+#define MENSA_HEIGHT 47
 
 #define NUM_X 1122
 #define NUM_Y 214

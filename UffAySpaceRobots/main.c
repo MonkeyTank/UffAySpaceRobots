@@ -14,44 +14,45 @@ int main() {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
 	}
 	
-	RESTART:
+	while (1) {
 
-	//rooms return 0 on death and 1 on success
-	//die returns 0 on exit and 1 on restart
-	if (!room1(mainWindow)) {
-		if (die(mainWindow)) {
-			goto RESTART;
+		//rooms return 0 on death and 1 on success
+		//die returns 0 on exit and 1 on restart
+		if (!room1(mainWindow)) {
+			if (die(mainWindow)) {
+				continue;
+			}
+			else {
+				Mix_Quit();
+				SDL_DestroyWindow(mainWindow);
+				SDL_Quit();
+				exit(EXIT_SUCCESS);
+			}
 		}
-		else {
-			Mix_Quit();
-			SDL_DestroyWindow(mainWindow);
-			SDL_Quit();
-			exit(EXIT_SUCCESS);
-		}
-	}
 
-	if (!room2(mainWindow)) {
-		if (die(mainWindow)) {
-			goto RESTART;
+		if (!room2(mainWindow)) {
+			if (die(mainWindow)) {
+				continue;
+			}
+			else {
+				Mix_Quit();
+				SDL_DestroyWindow(mainWindow);
+				SDL_Quit();
+				exit(EXIT_SUCCESS);
+			}
 		}
-		else {
-			Mix_Quit();
-			SDL_DestroyWindow(mainWindow);
-			SDL_Quit();
-			exit(EXIT_SUCCESS);
-		}
-	}
 
-	if (!room3(mainWindow)) {
-		if (die(mainWindow)) {
-			goto RESTART;
+		if (!room3(mainWindow)) {
+			if (die(mainWindow)) {
+				continue;
+			}
+			else {
+				Mix_Quit();
+				SDL_DestroyWindow(mainWindow);
+				SDL_Quit();
+				exit(EXIT_SUCCESS);
+			}
 		}
-		else {
-			Mix_Quit();
-			SDL_DestroyWindow(mainWindow);
-			SDL_Quit();
-			exit(EXIT_SUCCESS);
-		}
+		exit(EXIT_SUCCESS);
 	}
-	exit(EXIT_SUCCESS);
 }

@@ -180,3 +180,11 @@ SDL_Event getClick(SDL_Event mouse) {
 	}
 	return mouse;
 }
+
+SDL_Event getKey(SDL_Event key) {
+
+	while (SDL_KEYDOWN != key.type) {
+		SDL_PollEvent(&key);
+	}
+	return key;
+}

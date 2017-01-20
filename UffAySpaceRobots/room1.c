@@ -69,6 +69,7 @@ int room1(SDL_Window* mainWindow) {
 	SDL_RenderPresent(rendererRoom1);
 
 	flashback1();
+	flashback1_1();
 	Mix_PlayMusic(backgroundMusic, -1);
 	int leave;
 

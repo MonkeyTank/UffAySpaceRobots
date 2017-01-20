@@ -4,7 +4,7 @@ void numbers() {
 
 	//build window
 	SDL_Window* popup;
-	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 500, 500, SDL_WINDOW_SHOWN);
+	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 375, SDL_WINDOW_BORDERLESS);
 	if (popup == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
 	}
@@ -34,15 +34,17 @@ void numbers() {
 	}
 
 	//build texture background
-	SDL_Texture* row = loadImage("images/room1/numbers.bmp", rendererPopup);
+	SDL_Texture *row = loadImage("images/room1/zahlenreihe_tipp.bmp", rendererPopup);
+	SDL_Texture *idiot = loadImage("images/room1/zahlenreihe_idiot.bmp", rendererPopup);
+	SDL_Texture *tipp = loadImage("images/room1/zahlenreihe_tipp.bmp", rendererPopup);
 
 	//build texture back arrow
 	SDL_Texture* arrow = loadColorKeyImage("images/backArrow.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
 
 	//variables to track clicks
 	SDL_Event mouse;
-	//int x = 450;
-	//int y = 450;
+	SDL_Keysym press;
+
 	int x_button = 0;
 	int y_button = 0;
 
@@ -51,11 +53,11 @@ void numbers() {
 
 	//set dimensions for backArrow hitbox
 	SDL_Rect dimensions;
+	dimensions.x = 1150, dimensions.y = 325, dimensions.w = 50, dimensions.h = 50;
 
-	dimensions.x = 450;
-	dimensions.y = 450;
-	dimensions.w = 50;
-	dimensions.h = 50;
+	SDL_Rect tippHB;
+	tippHB.x = 0, tippHB.y = 0, tippHB.w = 163, tippHB.h = 67;
+
 
 	while (quit) {
 		while (SDL_PollEvent(&mouse)) {
@@ -71,6 +73,27 @@ void numbers() {
 					quit = 0;
 					SDL_DestroyWindow(popup);
 				}
+
+				if (XYInRect(tippHB, x_button, y_button)) {
+
+					SDL_RenderClear(rendererPopup);
+					SDL_RenderCopy(rendererPopup, idiot, NULL, NULL);
+					SDL_RenderPresent(rendererPopup);
+
+					mouse.type = 0;
+					mouse = getKey(mouse);
+					press = mouse.key.keysym;
+
+					if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
+						SDL_RenderClear(rendererPopup);
+						SDL_RenderCopy(rendererPopup, tipp, NULL, NULL);
+						SDL_RenderPresent(rendererPopup);
+
+						SDL_Delay(5000);
+					}
+				
+				}
+
 				break;
 
 				/*case SDL_MOUSEMOTION:

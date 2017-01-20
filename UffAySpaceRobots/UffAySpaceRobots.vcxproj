@@ -23,11 +23,13 @@
     <ClCompile Include="colors.c" />
     <ClCompile Include="die.c" />
     <ClCompile Include="flashback1.c" />
+    <ClCompile Include="flashback1_1.c" />
     <ClCompile Include="flashback2.c" />
     <ClCompile Include="flashback3.c" />
     <ClCompile Include="helper.c" />
     <ClCompile Include="labyrinth.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="mensa.c" />
     <ClCompile Include="numPad2.c" />
     <ClCompile Include="numPad3.c" />
     <ClCompile Include="numbers.c" />
@@ -47,6 +49,7 @@
     <ClInclude Include="helper.h" />
     <ClInclude Include="labyrinth.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="mensa.h" />
     <ClInclude Include="numbers.h" />
     <ClInclude Include="numPad1.h" />
     <ClInclude Include="numPad2.h" />

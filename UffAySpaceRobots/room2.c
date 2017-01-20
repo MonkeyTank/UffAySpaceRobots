@@ -3,12 +3,12 @@
 int room2(SDL_Window* mainWindow) {
 
 	//create hitboxes
-	SDL_Rect colorHB, labyrinthHB, numbersHB, numPadHB;
+	SDL_Rect colorHB, mensaHB, numbersHB, numPadHB;
 	SDL_DisplayMode mode;
 	SDL_GetCurrentDisplayMode(0, &mode);
 
 	colorHB.x = COLOR_X, colorHB.y = COLOR_Y, colorHB.w = COLOR_WIDTH, colorHB.h = COLOR_HEIGHT;
-	labyrinthHB.x = LAB_X, labyrinthHB.y = LAB_Y, labyrinthHB.w = LAB_WIDTH, labyrinthHB.h = LAB_HEIGHT;
+	mensaHB.x = MENSA_X, mensaHB.y = MENSA_Y, mensaHB.w = MENSA_WIDTH, mensaHB.h = MENSA_HEIGHT;
 	numbersHB.x = NUM_X, numbersHB.y = NUM_Y, numbersHB.w = NUM_WIDTH, numbersHB.h = NUM_HEIGHT;
 	numPadHB.x = NUMPAD_X, numPadHB.y = NUMPAD_Y, numPadHB.w = NUMPAD_WIDTH, numPadHB.h = NUMPAD_HEIGHT;
 
@@ -108,12 +108,12 @@ int room2(SDL_Window* mainWindow) {
 					colors();
 
 				}
-				else if (XYInRect(numbersHB, x_button, y_button)) {
+				else if (XYInRect(mensaHB, x_button, y_button)) {
 
-					numbers();
+					mensa();
 
 				}
-				else if (XYInRect(labyrinthHB, x_button, y_button)) {
+				else if (XYInRect(numbersHB, x_button, y_button)) {
 
 					labyrinth();
 

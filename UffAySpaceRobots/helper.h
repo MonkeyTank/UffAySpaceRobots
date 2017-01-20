@@ -9,3 +9,4 @@ void setRect(SDL_Rect rect, int x, int y, int w, int h);
 char* addToString(int counter, char* fullString);
 char* ReadFile(char *filename);
 SDL_Event getClick(SDL_Event mouse);
+SDL_Event getKey(SDL_Event key);

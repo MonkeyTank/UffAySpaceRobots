@@ -33,13 +33,17 @@ void colors() {
 	}
 
 	//build texture background
-	SDL_Texture* pad = loadImage("images/room2/colors.bmp", rendererPopup);
+	SDL_Texture *pad = loadImage("images/room2/ratsel/colors.bmp", rendererPopup);
+	SDL_Texture *error = loadImage("images/room2/ratsel/colors_error.bmp", rendererPopup);
+	SDL_Texture *success = loadImage("images/room2/ratsel/colors_success.bmp", rendererPopup);
 
 	//build texture back arrow
-	SDL_Texture* arrow = loadColorKeyImage("images/backArrow.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
+	SDL_Texture *arrow = loadColorKeyImage("images/backArrow.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
 
 	//variables to track clicks
-	SDL_Event mouse;
+	SDL_Event keys;
+	SDL_Keysym press;
+
 	//int x = 450;
 	//int y = 450;
 	int x_button = 0;
@@ -57,18 +61,105 @@ void colors() {
 	dimensions.h = 50;
 
 	while (quit) {
-		while (SDL_PollEvent(&mouse)) {
-			switch (mouse.type) {
+		while (SDL_PollEvent(&keys)) {
+			switch (keys.type) {
 
 			case SDL_MOUSEBUTTONDOWN:
-				x_button = mouse.button.x;
-				y_button = mouse.button.y;
+				x_button = keys.button.x;
+				y_button = keys.button.y;
 
 				//click on backArrow hitbox -> exit panel Anagram
 				if (XYInRect(dimensions, x_button, y_button)) {
 
 					quit = 0;
 					SDL_DestroyWindow(popup);
+				}
+				break;
+
+			case SDL_KEYDOWN:
+				press = keys.key.keysym;
+
+				//click on backArrow hitbox -> exit panel Anagram
+				if (SDLK_ESCAPE == press.sym) {
+
+					quit = 0;
+					SDL_DestroyWindow(popup);
+				}
+				break;
+
+				//type in code
+				if (SDLK_4 == press.sym || SDLK_KP_4 == press.sym) {
+
+					keys.type = 0;
+					keys = getKey(keys);
+					press = keys.key.keysym;
+
+					if (SDLK_2 == press.sym || SDLK_KP_2 == press.sym) {
+						keys.type = 0;
+						keys = getKey(keys);
+						press = keys.key.keysym;
+
+						if (SDLK_5 == press.sym || SDLK_KP_5 == press.sym) {
+							keys.type = 0;
+							keys = getKey(keys);
+							press = keys.key.keysym;
+
+							if (SDLK_3 == press.sym || SDLK_KP_3 == press.sym) {
+								keys.type = 0;
+								keys = getKey(keys);
+								press = keys.key.keysym;
+
+								if (SDLK_6 == press.sym || SDLK_KP_6 == press.sym) {
+									keys.type = 0;
+									keys = getKey(keys);
+									press = keys.key.keysym;
+
+									if (SDLK_1 == press.sym || SDLK_KP_1 == press.sym) {
+										SDL_RenderClear(rendererPopup);
+										SDL_RenderCopy(rendererPopup, success, NULL, NULL);
+										SDL_RenderPresent(rendererPopup);
+										SDL_Delay(3000);
+									}
+									else {
+										SDL_RenderClear(rendererPopup);
+										SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+										SDL_RenderPresent(rendererPopup);
+										SDL_Delay(2000);
+									}
+								}
+								else {
+									SDL_RenderClear(rendererPopup);
+									SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+									SDL_RenderPresent(rendererPopup);
+									SDL_Delay(2000);
+								}
+							}
+							else {
+								SDL_RenderClear(rendererPopup);
+								SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+								SDL_RenderPresent(rendererPopup);
+								SDL_Delay(2000);
+							}
+						}
+						else {
+							SDL_RenderClear(rendererPopup);
+							SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+							SDL_RenderPresent(rendererPopup);
+							SDL_Delay(2000);
+						}
+					}
+					else {
+						SDL_RenderClear(rendererPopup);
+						SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+						SDL_RenderPresent(rendererPopup);
+						SDL_Delay(2000);
+					}
+				}
+				else {
+					SDL_RenderClear(rendererPopup);
+					SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+					SDL_RenderPresent(rendererPopup);
+					SDL_Delay(2000);
 				}
 				break;
 

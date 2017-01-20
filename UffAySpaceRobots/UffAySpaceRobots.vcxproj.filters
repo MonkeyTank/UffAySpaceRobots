@@ -90,6 +90,12 @@
     <ClCompile Include="colors.c">
       <Filter>Source Files\room2</Filter>
     </ClCompile>
+    <ClCompile Include="mensa.c">
+      <Filter>Source Files\room2</Filter>
+    </ClCompile>
+    <ClCompile Include="flashback1_1.c">
+      <Filter>Source Files\room1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -141,6 +147,9 @@
       <Filter>Header Files\room3</Filter>
     </ClInclude>
     <ClInclude Include="colors.h">
+      <Filter>Header Files\room2</Filter>
+    </ClInclude>
+    <ClInclude Include="mensa.h">
       <Filter>Header Files\room2</Filter>
     </ClInclude>
   </ItemGroup>
