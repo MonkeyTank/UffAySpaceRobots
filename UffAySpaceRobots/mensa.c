@@ -3,7 +3,7 @@
 void mensa() {
 
 	//build window
-	SDL_Window* popup;
+	SDL_Window *popup;
 	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 400, SDL_WINDOW_BORDERLESS);
 	if (popup == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
@@ -14,19 +14,14 @@ void mensa() {
 		fprintf(stderr, "Fullscreen not possible! SDL_Error: %s", SDL_GetError());
 	}
 
-	////put window in focus
-	//if (0 != SDL_SetWindowInputFocus(popup)) {
-	//	fprintf(stderr, "Window Focus could not be changend! SDL_Error: %s", SDL_GetError());
-	//}
-
 	//show cursor in window
 	SDL_ShowCursor(SDL_ENABLE);
-	SDL_Cursor* cursor;
+	SDL_Cursor *cursor;
 	cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
 	SDL_SetCursor(cursor);
 
 	//build renderer
-	SDL_Renderer* rendererPopup;
+	SDL_Renderer *rendererPopup;
 	rendererPopup = SDL_CreateRenderer(popup, -1, SDL_RENDERER_ACCELERATED);
 	if (NULL == rendererPopup) {
 		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
@@ -37,7 +32,7 @@ void mensa() {
 	SDL_Texture *idiot = loadImage("images/room2/ratsel/mensa_idiot.bmp", rendererPopup);
 
 	//build texture back arrow
-	SDL_Texture* arrow = loadColorKeyImage("images/backArrow.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
+	SDL_Texture *arrow = loadColorKeyImage("images/backArrow.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
 
 	//variables to track clicks
 	SDL_Event mouse;
@@ -71,7 +66,6 @@ void mensa() {
 				if (XYInRect(dimensions, x_button, y_button)) {
 
 					quit = 0;
-					SDL_DestroyWindow(popup);
 				}
 				break;
 
@@ -97,6 +91,12 @@ void mensa() {
 	}
 
 	//hide cursor and delete second one
+	//free everything
 	SDL_FreeCursor(cursor);
 	SDL_ShowCursor(SDL_DISABLE);
+	SDL_DestroyTexture(pad);
+	SDL_DestroyTexture(arrow);
+	SDL_DestroyTexture(idiot);
+	SDL_DestroyRenderer(rendererPopup);
+	SDL_DestroyWindow(popup);
 }

@@ -5,6 +5,7 @@
 #include "numPad2.h"
 #include "labyrinth.h"
 #include "flashback2.h"
+#include "esc.h"
 
 #define COLOR_X 953
 #define COLOR_Y 424

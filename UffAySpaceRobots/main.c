@@ -2,13 +2,15 @@
 
 int main() {
 
+	int esc = 0;
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
 		fprintf(stderr, "Error, SDL could not be initialised because: \n");
 		fprintf(stderr, SDL_GetError());
 		return -1;
 	}
 
-	SDL_Window* mainWindow;
+	SDL_Window *mainWindow;
 	mainWindow = SDL_CreateWindow("mainWindow", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_BORDERLESS);
 	if (mainWindow == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
@@ -16,9 +18,12 @@ int main() {
 	
 	while (1) {
 
-		//rooms return 0 on death and 1 on success
+		//rooms return 0 on death, 1 on success and -1 on quit
 		//die returns 0 on exit and 1 on restart
-		if (!room1(mainWindow)) {
+
+		esc = room1(mainWindow);
+
+		if (!esc) {
 			if (die(mainWindow)) {
 				continue;
 			}
@@ -29,8 +34,16 @@ int main() {
 				exit(EXIT_SUCCESS);
 			}
 		}
+		else if (-1 == esc) {
+			Mix_Quit();
+			SDL_DestroyWindow(mainWindow);
+			SDL_Quit();
+			exit(EXIT_SUCCESS);
+		}
 
-		if (!room2(mainWindow)) {
+		esc = room2(mainWindow);
+
+		if (!esc) {
 			if (die(mainWindow)) {
 				continue;
 			}
@@ -41,8 +54,16 @@ int main() {
 				exit(EXIT_SUCCESS);
 			}
 		}
+		else if (-1 == esc) {
+			Mix_Quit();
+			SDL_DestroyWindow(mainWindow);
+			SDL_Quit();
+			exit(EXIT_SUCCESS);
+		}
 
-		if (!room3(mainWindow)) {
+		esc = room3(mainWindow);
+
+		if (!esc) {
 			if (die(mainWindow)) {
 				continue;
 			}
@@ -52,6 +73,12 @@ int main() {
 				SDL_Quit();
 				exit(EXIT_SUCCESS);
 			}
+		}
+		else if (-1 == esc) {
+			Mix_Quit();
+			SDL_DestroyWindow(mainWindow);
+			SDL_Quit();
+			exit(EXIT_SUCCESS);
 		}
 		exit(EXIT_SUCCESS);
 	}

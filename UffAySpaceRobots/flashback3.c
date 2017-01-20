@@ -3,13 +3,13 @@
 void flashback3() {
 
 	//////////////////////////////////////initialize music, video and text/////////////////////////////////////
-
-	SDL_Surface *screen; // even with SDL2, we can still bring ancient code back
-	SDL_Window *window;
+	
 	SDL_Surface *text;
-
-	char* fullString = ReadFile("text/flashback3.txt");
-	char* string;
+	SDL_Surface *screen; 
+	SDL_Window *window;
+	
+	char *fullString = ReadFile("text/flashback3.txt");
+	char *string;
 	int cnt = 0;
 	int quit = 1;
 
@@ -79,7 +79,7 @@ void flashback3() {
 
 
 		//////////////////////////////////////Skip text on tap any key//////////////////////////////////
-		SDL_PollEvent(&end);
+		while (SDL_PollEvent(&end));
 		if (SDL_KEYDOWN == end.type) {
 
 			end.type = 0;
@@ -108,5 +108,6 @@ void flashback3() {
 	Mix_FreeMusic(typing);
 	typing = NULL;
 	SDL_FreeSurface(text);
+	SDL_FreeSurface(screen);
 	SDL_DestroyWindow(window);
 }

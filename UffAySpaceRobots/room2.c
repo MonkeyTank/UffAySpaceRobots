@@ -1,6 +1,6 @@
 #include "room2.h"
 
-int room2(SDL_Window* mainWindow) {
+int room2(SDL_Window *mainWindow) {
 
 	//create hitboxes
 	SDL_Rect colorHB, mensaHB, numbersHB, numPadHB;
@@ -13,7 +13,7 @@ int room2(SDL_Window* mainWindow) {
 	numPadHB.x = NUMPAD_X, numPadHB.y = NUMPAD_Y, numPadHB.w = NUMPAD_WIDTH, numPadHB.h = NUMPAD_HEIGHT;
 
 	//create renderer for room2, hide the system cursor
-	SDL_Renderer* rendererRoom2;
+	SDL_Renderer *rendererRoom2;
 	rendererRoom2 = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
 	if (NULL == rendererRoom2) {
 		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
@@ -38,21 +38,20 @@ int room2(SDL_Window* mainWindow) {
 
 
 	//load graphics for background and pocket light
-	SDL_Texture* background;
+	SDL_Texture *background;
 	background = loadImage("images/room2/room2Background.bmp", rendererRoom2);
 
 	if (!background) {
 		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());
 	}
 
-	SDL_Texture* light;
+	SDL_Texture *light;
 	light = loadColorKeyImage("images/light_cursor.bmp", rendererRoom2, 0xFF, 0xFF, 0xFF);
 
 	if (!light) {
 		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());
 	}
 
-	//define starting positions for cursor and loaded graphics
 	SDL_Rect dimensions;
 	dimensions.x = 0, dimensions.y = 0, dimensions.w = 3840, dimensions.h = 2160;
 
@@ -91,6 +90,8 @@ int room2(SDL_Window* mainWindow) {
 						Mix_HaltMusic();
 						Mix_FreeMusic(backgroundMusic);
 						backgroundMusic = NULL;
+						SDL_DestroyTexture(background);
+						SDL_DestroyTexture(light);
 						SDL_DestroyRenderer(rendererRoom2);
 						return 0;
 					}
@@ -98,6 +99,8 @@ int room2(SDL_Window* mainWindow) {
 						Mix_HaltMusic();
 						Mix_FreeMusic(backgroundMusic);
 						backgroundMusic = NULL;
+						SDL_DestroyTexture(background);
+						SDL_DestroyTexture(light);
 						SDL_DestroyRenderer(rendererRoom2);
 						return 1;
 					}
@@ -124,6 +127,21 @@ int room2(SDL_Window* mainWindow) {
 			case SDL_MOUSEMOTION:
 				x = mouse.motion.x - 1920;
 				y = mouse.motion.y - 1080;
+				break;
+
+			case SDL_KEYDOWN:
+				if (SDLK_ESCAPE == mouse.key.keysym.sym) {
+					//esc asks user, if he wants to exit  and returns 1 if yes and 0 if not
+					if (esc(mainWindow, rendererRoom2)) {
+						Mix_HaltMusic();
+						Mix_FreeMusic(backgroundMusic);
+						backgroundMusic = NULL;
+						SDL_DestroyTexture(background);
+						SDL_DestroyTexture(light);
+						SDL_DestroyRenderer(rendererRoom2);
+						return -1;
+					}
+				}
 				break;
 
 			default:

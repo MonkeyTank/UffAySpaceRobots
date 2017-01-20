@@ -8,8 +8,8 @@ void flashback1() {
 	SDL_Window *window;
 	SDL_Surface *text;
 
-	char* fullString = ReadFile("text/flashback1.txt");
-	char* string; 
+	char *fullString = ReadFile("text/flashback1.txt");
+	char *string; 
 	int cnt = 0;
 	int quit = 1;
 
@@ -79,7 +79,7 @@ void flashback1() {
 
 
 		//////////////////////////////////////Skip text on tap any key//////////////////////////////////
-		SDL_PollEvent(&end);
+		while(SDL_PollEvent(&end));
 		if (SDL_KEYDOWN == end.type) {
 
 			end.type = 0;
@@ -89,12 +89,12 @@ void flashback1() {
 				fullString,
 				text_color,
 				800);
-			SDL_BlitSurface(text, NULL, screen, NULL); // blit it to the screen
+			SDL_BlitSurface(text, NULL, screen, NULL); 
 			SDL_UpdateWindowSurface(window);
 			Mix_HaltMusic();
 
  			while (1) {
-				SDL_PollEvent(&end);
+				while(SDL_PollEvent(&end));
  				if (SDL_KEYDOWN == end.type) {
 					quit = 0;
 					break;
@@ -108,5 +108,6 @@ void flashback1() {
 	Mix_FreeMusic(typing);
 	typing = NULL;
 	SDL_FreeSurface(text);
+	SDL_FreeSurface(screen);
 	SDL_DestroyWindow(window);
 }

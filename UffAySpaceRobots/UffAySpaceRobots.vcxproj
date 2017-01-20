@@ -22,6 +22,7 @@
     <ClCompile Include="anagram.c" />
     <ClCompile Include="colors.c" />
     <ClCompile Include="die.c" />
+    <ClCompile Include="esc.c" />
     <ClCompile Include="flashback1.c" />
     <ClCompile Include="flashback1_1.c" />
     <ClCompile Include="flashback2.c" />
@@ -43,6 +44,7 @@
     <ClInclude Include="anagram.h" />
     <ClInclude Include="colors.h" />
     <ClInclude Include="die.h" />
+    <ClInclude Include="esc.h" />
     <ClInclude Include="flashback1.h" />
     <ClInclude Include="flashback2.h" />
     <ClInclude Include="flashback3.h" />

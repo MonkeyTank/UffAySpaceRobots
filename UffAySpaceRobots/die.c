@@ -12,7 +12,7 @@ int die(SDL_Window* dieWindow) {
 	restart.x = RESTART_X, restart.y = RESTART_Y, restart.w = BUTTON_WIDTH, restart.h = BUTTON_HEIGHT;
 
 	//create renderer for die, hide the system cursor
-	SDL_Renderer* rendererDie;
+	SDL_Renderer *rendererDie;
 	rendererDie = SDL_CreateRenderer(dieWindow, -1, SDL_RENDERER_ACCELERATED);
 	if (NULL == rendererDie) {
 		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
@@ -37,7 +37,7 @@ int die(SDL_Window* dieWindow) {
 	//play music
 	Mix_PlayMusic(backgroundMusic, 1);
 
-	//load graphics for background and pocket light
+	//load graphics for background
 	SDL_Texture* background;
 	background = loadImage("images/youdied.bmp", rendererDie);
 

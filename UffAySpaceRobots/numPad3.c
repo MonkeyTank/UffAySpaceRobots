@@ -5,7 +5,7 @@ int numPad3() {
 	int warnings = 0;
 
 	//build window
-	SDL_Window* popup;
+	SDL_Window *popup;
 	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 700, 900, SDL_WINDOW_BORDERLESS);
 	if (popup == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
@@ -18,30 +18,28 @@ int numPad3() {
 
 	//show cursor
 	SDL_ShowCursor(SDL_ENABLE);
-	SDL_Cursor* cursor;
+	SDL_Cursor *cursor;
 	cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
 	SDL_SetCursor(cursor);
 
 	//create renderer
-	SDL_Renderer* rendererPopup;
+	SDL_Renderer *rendererPopup;
 	rendererPopup = SDL_CreateRenderer(popup, -1, SDL_RENDERER_ACCELERATED);
 	if (NULL == rendererPopup) {
 		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
 	}
 
-	SDL_Texture* pad = loadImage("images/numpad/numpad.bmp", rendererPopup);
+	SDL_Texture *pad = loadImage("images/numpad/numpad.bmp", rendererPopup);
 
 	//variables to track clicks
 	SDL_Event keys;
 	SDL_Keysym press;
 
-	//quit is set by clicking on backArrow hitbox
-	int quit = 1;
 
 	int x_button = 250;
 	int y_button = 250;
 
-	while (quit) {
+	while (1) {
 		while (SDL_PollEvent(&keys)) {
 			switch (keys.type) {
 
@@ -50,7 +48,10 @@ int numPad3() {
 
 				if (SDLK_ESCAPE == press.sym) {
 
-					quit = 0;
+					SDL_FreeCursor(cursor);
+					SDL_ShowCursor(SDL_DISABLE);
+					SDL_DestroyTexture(pad);
+					SDL_DestroyRenderer(rendererPopup);
 					SDL_DestroyWindow(popup);
 					return 0;
 				}
@@ -80,6 +81,9 @@ int numPad3() {
 
 								if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
 
+									SDL_FreeCursor(cursor);
+									SDL_ShowCursor(SDL_DISABLE);
+									SDL_DestroyTexture(pad);
 									SDL_DestroyRenderer(rendererPopup);
 									SDL_DestroyWindow(popup);
 									return 1;
@@ -94,6 +98,11 @@ int numPad3() {
 					Mix_PauseMusic();
 					//warning returns 0 on death
 					if (0 == warning(warnings)) {
+
+						SDL_FreeCursor(cursor);
+						SDL_ShowCursor(SDL_DISABLE);
+						SDL_DestroyTexture(pad);				
+						SDL_DestroyRenderer(rendererPopup);
 						SDL_DestroyWindow(popup);
 						return -1;
 					}
@@ -101,12 +110,6 @@ int numPad3() {
 					warnings++;
 					break;
 				}
-
-
-				/*case SDL_MOUSEMOTION:
-				x = mouse.motion.x - 1920;
-				y = mouse.motion.y - 1080;
-				break;*/
 
 			default:
 				break;
@@ -117,7 +120,4 @@ int numPad3() {
 			SDL_RenderPresent(rendererPopup);
 		}
 	}
-	//hide cursor and delete second one
-	SDL_FreeCursor(cursor);
-	SDL_ShowCursor(SDL_DISABLE);
 }

@@ -1,6 +1,6 @@
 #include "room1.h"
 
-int room1(SDL_Window* mainWindow) {
+int room1(SDL_Window *mainWindow) {
 
 	//create hitboxes
 	SDL_Rect anagramHB, labyrinthHB, numbersHB, numPadHB;
@@ -13,7 +13,7 @@ int room1(SDL_Window* mainWindow) {
 	numPadHB.x = NUMPAD_X, numPadHB.y = NUMPAD_Y, numPadHB.w = NUMPAD_WIDTH, numPadHB.h = NUMPAD_HEIGHT;
 
 	//create renderer for room1, hide the system cursor
-	SDL_Renderer* rendererRoom1;
+	SDL_Renderer *rendererRoom1;
 	rendererRoom1 = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
 	if (NULL == rendererRoom1) {
 		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
@@ -92,6 +92,8 @@ int room1(SDL_Window* mainWindow) {
 						Mix_HaltMusic();
 						Mix_FreeMusic(backgroundMusic);
 						backgroundMusic = NULL;
+						SDL_DestroyTexture(background);
+						SDL_DestroyTexture(light);
 						SDL_DestroyRenderer(rendererRoom1);
 						return 0;
 					}
@@ -99,6 +101,8 @@ int room1(SDL_Window* mainWindow) {
 						Mix_HaltMusic();
 						Mix_FreeMusic(backgroundMusic);
 						backgroundMusic = NULL;
+						SDL_DestroyTexture(background);
+						SDL_DestroyTexture(light);
 						SDL_DestroyRenderer(rendererRoom1);
 						return 1;
 					}
@@ -125,6 +129,22 @@ int room1(SDL_Window* mainWindow) {
 			case SDL_MOUSEMOTION:
 				x = mouse.motion.x - 1920;
 				y = mouse.motion.y - 1080;
+				break;
+
+			case SDL_KEYDOWN:
+				if (SDLK_ESCAPE == mouse.key.keysym.sym) {
+
+		//esc asks user, if he wants to exit  and returns 1 if yes and 0 if not
+					if (esc(mainWindow, rendererRoom1)) {
+						Mix_HaltMusic();
+						Mix_FreeMusic(backgroundMusic);
+						backgroundMusic = NULL;
+						SDL_DestroyTexture(background);
+						SDL_DestroyTexture(light);
+						SDL_DestroyRenderer(rendererRoom1);
+						return -1;
+					}
+				}
 				break;
 
 			default:

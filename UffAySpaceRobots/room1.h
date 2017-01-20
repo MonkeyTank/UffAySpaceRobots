@@ -5,6 +5,7 @@
 #include "numPad1.h"
 #include "labyrinth.h"
 #include "flashback1.h"
+#include "esc.h"
 
 #define ANA_X 942
 #define ANA_Y 838

@@ -3,7 +3,7 @@
 void labyrinth() {
 
 	//build window
-	SDL_Window* popup;
+	SDL_Window *popup;
 	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_BORDERLESS);
 	if (popup == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
@@ -16,25 +16,25 @@ void labyrinth() {
 
 	//show cursor in window
 	SDL_ShowCursor(SDL_ENABLE);
-	SDL_Cursor* cursor;
+	SDL_Cursor *cursor;
 	cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
 	SDL_SetCursor(cursor);
 
 	//build renderer
-	SDL_Renderer* rendererPopup;
+	SDL_Renderer *rendererPopup;
 	rendererPopup = SDL_CreateRenderer(popup, -1, SDL_RENDERER_ACCELERATED);
 	if (NULL == rendererPopup) {
 		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
 	}
 
 	//build texture background
-	SDL_Texture* pad = loadImage("images/room1/labyrinth.bmp", rendererPopup);
+	SDL_Texture *pad = loadImage("images/room1/labyrinth.bmp", rendererPopup);
 
 	//build texture back arrow
-	SDL_Texture* arrow = loadImage("images/backArrow.bmp", rendererPopup);
+	SDL_Texture *arrow = loadImage("images/backArrow.bmp", rendererPopup);
 
 	//build texture pocket light
-	SDL_Texture* light = loadColorKeyImage("images/light_small.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
+	SDL_Texture *light = loadColorKeyImage("images/light_small.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
 
 	//variables to track clicks
 	SDL_Event mouse;
@@ -73,7 +73,6 @@ void labyrinth() {
 				if ( XYInRect(dimensionsArrow, x_button, y_button)) {
 
 					quit = 0;
-					SDL_DestroyWindow(popup);
 				}
 				break;
 
@@ -93,8 +92,13 @@ void labyrinth() {
 			SDL_RenderPresent(rendererPopup);
 		}
 	}
+
 	//hide cursor and delete second one
 	SDL_FreeCursor(cursor);
 	SDL_ShowCursor(SDL_DISABLE);
-
+	SDL_DestroyTexture(pad);
+	SDL_DestroyTexture(arrow);
+	SDL_DestroyTexture(light);
+	SDL_DestroyRenderer(rendererPopup);
+	SDL_DestroyWindow(popup);
 }

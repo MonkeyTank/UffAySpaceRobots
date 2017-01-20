@@ -96,6 +96,9 @@
     <ClCompile Include="flashback1_1.c">
       <Filter>Source Files\room1</Filter>
     </ClCompile>
+    <ClCompile Include="esc.c">
+      <Filter>Source Files\helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="mensa.h">
       <Filter>Header Files\room2</Filter>
+    </ClInclude>
+    <ClInclude Include="esc.h">
+      <Filter>Header Files\helper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

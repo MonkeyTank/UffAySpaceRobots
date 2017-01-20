@@ -8,8 +8,8 @@ void flashback1_1() {
 	SDL_Window *window;
 	SDL_Surface *text;
 
-	char* fullString = ReadFile("text/flashback1_1.txt");
-	char* string;
+	char *fullString = ReadFile("text/flashback1_1.txt");
+	char *string;
 	int cnt = 0;
 	int quit = 1;
 
@@ -109,5 +109,6 @@ void flashback1_1() {
 	Mix_FreeMusic(typing);
 	typing = NULL;
 	SDL_FreeSurface(text);
+	SDL_FreeSurface(screen);
 	SDL_DestroyWindow(window);
 }

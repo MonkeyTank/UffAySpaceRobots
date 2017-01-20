@@ -98,13 +98,6 @@ int XYInRect(const SDL_Rect rect, int x, int y) {
 
 }
 
-//set values for rect
-void setRect(SDL_Rect rect, int x, int y, int w, int h) {
-	rect.x = x;
-	rect.y = y;
-	rect.w = w;
-	rect.h = h;
-}
 
 //add one char to string each time the function is called
 char* addToString(int counter, char* fullString) {
