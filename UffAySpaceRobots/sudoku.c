@@ -48,12 +48,7 @@ void sudoku() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensions;
-
-	dimensions.x = 1870;
-	dimensions.y = 1030;
-	dimensions.w = 50;
-	dimensions.h = 50;
+	SDL_Rect dimensions = { 1870, 1030, 50, 50 };
 
 	while (quit) {
 		while (SDL_PollEvent(&keys)) {
@@ -82,7 +77,7 @@ void sudoku() {
 				}
 
 				//enter right code
-				if (SDLK_1 == press.sym || SDLK_KP_1 == press.sym) {
+				if (SDLK_3 == press.sym || SDLK_KP_3 == press.sym) {
 
 					keys.type = 0;
 					keys = getKey(keys);
@@ -93,12 +88,24 @@ void sudoku() {
 						keys = getKey(keys);
 						press = keys.key.keysym;
 
-						if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
-							SDL_RenderClear(rendererPopup);
-							SDL_RenderCopy(rendererPopup, success, NULL, NULL);
-							SDL_RenderPresent(rendererPopup);
-							SDL_Delay(2000);
-							break;
+						if (SDLK_4 == press.sym || SDLK_KP_4 == press.sym) {
+							keys.type = 0;
+							keys = getKey(keys);
+							press = keys.key.keysym;
+
+							if (SDLK_2 == press.sym || SDLK_KP_2 == press.sym) {
+								keys.type = 0;
+								keys = getKey(keys);
+								press = keys.key.keysym;
+
+								if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
+									SDL_RenderClear(rendererPopup);
+									SDL_RenderCopy(rendererPopup, success, NULL, NULL);
+									SDL_RenderPresent(rendererPopup);
+									SDL_Delay(2000);
+									break;
+								}
+							}
 						}
 					}
 				}

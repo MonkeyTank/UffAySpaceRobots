@@ -102,19 +102,12 @@ int XYInRect(const SDL_Rect rect, int x, int y) {
 //add one char to string each time the function is called
 char* addToString(int counter, char* fullString) {
 
-	int newline = strlen(fullString) % 55;
-	int k = 0;
-
-	char* string = (char*)malloc((counter + newline + 1) * sizeof(char));
+	char* string = (char*)malloc((counter  + 1) * sizeof(char));
 
 	for (int i = 0; i < counter; i++) {
 
-		if (!(k % 55)) {
-			string[k] = '\n';
-			k++;
-		}
-		string[k] = fullString[i];
-		k++;
+		string[i] = fullString[i];
+
 	}
 
 	string[counter] = '\0';

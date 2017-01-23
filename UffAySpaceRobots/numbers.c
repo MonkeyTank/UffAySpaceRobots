@@ -47,11 +47,9 @@ void numbers() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensions;
-	dimensions.x = 1150, dimensions.y = 325, dimensions.w = 50, dimensions.h = 50;
+	SDL_Rect dimensions = { 1150, 325, 50, 50 };
 
-	SDL_Rect tippHB;
-	tippHB.x = 0, tippHB.y = 0, tippHB.w = 163, tippHB.h = 67;
+	SDL_Rect tippHB = { 0, 0, 163, 67 };
 
 
 	while (quit) {

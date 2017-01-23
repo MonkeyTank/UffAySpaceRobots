@@ -43,12 +43,7 @@ void anagram() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensions;
-
-	dimensions.x = 1550;
-	dimensions.y = 350;
-	dimensions.w = 50;
-	dimensions.h = 50;
+	SDL_Rect dimensions = { 1550, 350, 50, 50 };
 
 	while (quit) {
 		while (SDL_PollEvent(&mouse)) {

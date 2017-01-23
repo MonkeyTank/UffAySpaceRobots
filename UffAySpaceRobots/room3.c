@@ -3,14 +3,10 @@
 int room3(SDL_Window *mainWindow) {
 
 	//create hitboxes
-	SDL_Rect crossHB, beerHB, sudokuHB, numPadHB;
-	SDL_DisplayMode mode;
-	SDL_GetCurrentDisplayMode(0, &mode);
-
-	crossHB.x = CROSS_X, crossHB.y = CROSS_Y, crossHB.w = CROSS_WIDTH, crossHB.h = CROSS_HEIGHT;
-	beerHB.x = BEER_X, beerHB.y = BEER_Y, beerHB.w = BEER_WIDTH, beerHB.h = BEER_HEIGHT;
-	sudokuHB.x = SUD_X, sudokuHB.y = SUD_Y, sudokuHB.w = SUD_WIDTH, sudokuHB.h = SUD_HEIGHT;
-	numPadHB.x = NUMPAD3_X, numPadHB.y = NUMPAD3_Y, numPadHB.w = NUMPAD3_WIDTH, numPadHB.h = NUMPAD3_HEIGHT;
+	SDL_Rect crossHB = { CROSS_X, CROSS_Y, CROSS_WIDTH, CROSS_HEIGHT };
+	SDL_Rect beerHB = { BEER_X, BEER_Y, BEER_WIDTH, BEER_HEIGHT };
+	SDL_Rect sudokuHB = { SUD_X, SUD_Y, SUD_WIDTH, SUD_HEIGHT };
+	SDL_Rect numPadHB = { NUMPAD3_X, NUMPAD3_Y, NUMPAD3_WIDTH, NUMPAD3_HEIGHT };
 
 	//create renderer for room3, hide the system cursor
 	SDL_Renderer *rendererRoom3;
@@ -53,8 +49,7 @@ int room3(SDL_Window *mainWindow) {
 	}
 
 	//define starting positions for cursor and loaded graphics
-	SDL_Rect dimensions;
-	dimensions.x = 0, dimensions.y = 0, dimensions.w = 3840, dimensions.h = 2160;
+	SDL_Rect dimensions = { 0, 0, 3840, 2160 };
 
 	SDL_Event mouse;
 	int x = -960;
@@ -62,19 +57,17 @@ int room3(SDL_Window *mainWindow) {
 	int x_button = -960;
 	int y_button = -540;
 
-	//if right code in numPad is entered, quit is set to 0 and room3 is left
-	int quit = 1;
 
 	SDL_RenderClear(rendererRoom3);
 	SDL_RenderCopy(rendererRoom3, background, NULL, NULL);
 	render(x, y, light, &dimensions, rendererRoom3);
 	SDL_RenderPresent(rendererRoom3);
 
-	flashback3();
+	flashback("text/flashback3.txt");
 	Mix_PlayMusic(backgroundMusic, -1);
 	int leave;
 
-	while (quit) {
+	while (1) {
 		//constantly polling mouse to move pocket light graphic with cursor
 		while (SDL_PollEvent(&mouse)) {
 			switch (mouse.type) {

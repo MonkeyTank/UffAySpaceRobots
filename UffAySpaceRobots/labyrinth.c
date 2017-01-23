@@ -47,20 +47,10 @@ void labyrinth() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensionsArrow;
-
-	dimensionsArrow.x = ARROW_X;
-	dimensionsArrow.y = ARROW_Y;
-	dimensionsArrow.w = ARROW_DIM;
-	dimensionsArrow.h = ARROW_DIM;
+	SDL_Rect dimensionsArrow = { ARROW_X, ARROW_Y, ARROW_DIM, ARROW_DIM };
 
 	//set dimensions for pocket light
-	SDL_Rect dimensions;
-
-	dimensions.x = 0;
-	dimensions.y = 0;
-	dimensions.w = 3840;
-	dimensions.h = 2160;
+	SDL_Rect dimensions = {0, 0, 3840, 2160 };
 
 	while (quit) {
 		while (SDL_PollEvent(&mouse)) {

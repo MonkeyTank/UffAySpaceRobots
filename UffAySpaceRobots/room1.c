@@ -3,14 +3,13 @@
 int room1(SDL_Window *mainWindow) {
 
 	//create hitboxes
-	SDL_Rect anagramHB, labyrinthHB, numbersHB, numPadHB;
 	SDL_DisplayMode mode;
 	SDL_GetCurrentDisplayMode(0, &mode);
 
-	anagramHB.x = ANA_X, anagramHB.y =ANA_Y, anagramHB.w = ANA_WIDTH, anagramHB.h = ANA_HEIGHT;
-	labyrinthHB.x = LAB_X, labyrinthHB.y = LAB_Y , labyrinthHB.w = LAB_WIDTH, labyrinthHB.h = LAB_HEIGHT;
-	numbersHB.x = NUM_X, numbersHB.y = NUM_Y, numbersHB.w = NUM_WIDTH, numbersHB.h = NUM_HEIGHT;
-	numPadHB.x = NUMPAD1_X, numPadHB.y = NUMPAD1_Y, numPadHB.w = NUMPAD1_WIDTH, numPadHB.h = NUMPAD1_HEIGHT;
+	SDL_Rect anagramHB = { ANA_X, ANA_Y, ANA_WIDTH, ANA_HEIGHT };
+	SDL_Rect labyrinthHB = { LAB_X, LAB_Y, LAB_WIDTH, LAB_HEIGHT };
+	SDL_Rect numbersHB = { NUM_X, NUM_Y, NUM_WIDTH, NUM_HEIGHT };
+	SDL_Rect numPadHB = { NUMPAD1_X, NUMPAD1_Y, NUMPAD1_WIDTH, NUMPAD1_HEIGHT };
 
 	//create renderer for room1, hide the system cursor
 	SDL_Renderer *rendererRoom1;
@@ -53,8 +52,7 @@ int room1(SDL_Window *mainWindow) {
 	}
 
 	//define starting positions for cursor and loaded graphics
-	SDL_Rect dimensions;
-	dimensions.x = 0, dimensions.y = 0, dimensions.w = 3840, dimensions.h = 2160;
+	SDL_Rect dimensions = { 0, 0, 3840, 2160 };
 	
 	SDL_Event mouse;
 	int x = -960;
@@ -68,8 +66,9 @@ int room1(SDL_Window *mainWindow) {
 	render(x, y, light, &dimensions, rendererRoom1);
 	SDL_RenderPresent(rendererRoom1);
 
-	flashback1();
-	flashback1_1();
+	//tell story
+	flashback("text/flashback1.txt");
+	flashback("text/flashback1_1.txt");
 	Mix_PlayMusic(backgroundMusic, -1);
 	int leave;
 

@@ -4,12 +4,12 @@ int die(SDL_Window* dieWindow) {
 
 
 	//create hitboxes
-	SDL_Rect exit, restart;
 	SDL_DisplayMode mode;
 	SDL_GetCurrentDisplayMode(0, &mode);
 
-	exit.x = EXIT_X, exit.y = EXIT_Y, exit.w = BUTTON_WIDTH, exit.h = BUTTON_HEIGHT;
-	restart.x = RESTART_X, restart.y = RESTART_Y, restart.w = BUTTON_WIDTH, restart.h = BUTTON_HEIGHT;
+
+	SDL_Rect exit = {EXIT_X, EXIT_Y, BUTTON_WIDTH, BUTTON_HEIGHT };
+	SDL_Rect restart = { RESTART_X, RESTART_Y, BUTTON_WIDTH, BUTTON_HEIGHT };
 
 	//create renderer for die
 	SDL_Renderer *rendererDie;

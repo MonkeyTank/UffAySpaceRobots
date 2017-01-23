@@ -1,23 +1,24 @@
-#include "flashback2.h"
+#include "flashback.h"
 
-void flashback2() {
+void flashback(char* path) {
 
 	//////////////////////////////////////initialize music, video and text/////////////////////////////////////
-	
-	SDL_Window *window;
-	SDL_Surface *screen; 
-	SDL_Surface *text;
 
-	char *fullString = ReadFile("text/flashback2.txt");
-	char *string;
+	SDL_Surface *screen; 
+	SDL_Window *window;
+	SDL_Surface *text;
+	SDL_Rect paper = { 560, 140, 800, 800 };
+
+	char *fullString = ReadFile(path);
+	char *string; 
 	int cnt = 0;
 	int quit = 1;
 
 	Mix_Music *typing = NULL;
 
 	//init sdl mixer
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) { 
+		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());  
 	}
 
 	//load music
@@ -28,10 +29,11 @@ void flashback2() {
 	Mix_PlayMusic(typing, -1);
 
 	// init video
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_VIDEO); 
 
 	// create the window
-	window = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 800, SDL_WINDOW_BORDERLESS);
+	
+	window = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_BORDERLESS);
 
 	// Initialize SDL_ttf library
 	if (TTF_Init() != 0)
@@ -54,53 +56,54 @@ void flashback2() {
 
 	//////////////////////////////////////render Text on Screen/////////////////////////////////////
 	while (1) {
+		
+		while(SDL_PollEvent(&end));
 
 		string = addToString(cnt, fullString);
 		cnt++;
-		if ('\0' == string[cnt]) {
-			Mix_HaltMusic();
-		}
+
 		//write text to surface
 		SDL_Color text_color = { 255, 255, 255 };
 		text = TTF_RenderText_Blended_Wrapped(font,
 			string,
 			text_color,
-			800);
+			1000);
 
 
 		SDL_FillRect(screen, NULL, 0x000000); 		//overwrite screen in black
-		SDL_BlitSurface(text, NULL, screen, NULL);	// blit it to the screen
-
+		SDL_BlitSurface(text, NULL, screen, &paper);	// blit it to the screen
+		
 
 		SDL_UpdateWindowSurface(window);
 
-		// show image for 80 ms
-		SDL_Delay(80);
+		// show image for 60 ms
+		SDL_Delay(60);
 
 
 		//////////////////////////////////////Skip text on tap any key//////////////////////////////////
-		while (SDL_PollEvent(&end));
-		if (SDL_KEYDOWN == end.type) {
+		
+		if (SDL_KEYDOWN == end.type || '\0' == fullString[cnt]) {
 
+			Mix_HaltMusic();
 			end.type = 0;
 			SDL_FillRect(screen, NULL, 0x000000);
 
 			text = TTF_RenderText_Blended_Wrapped(font,
 				fullString,
 				text_color,
-				800);
-			SDL_BlitSurface(text, NULL, screen, NULL); // blit it to the screen
+				1000);
+			SDL_BlitSurface(text, NULL, screen, &paper); 
 			SDL_UpdateWindowSurface(window);
 			Mix_HaltMusic();
 
-			while (1) {
-				SDL_PollEvent(&end);
-				if (SDL_KEYDOWN == end.type) {
+ 			while (1) {
+				while(SDL_PollEvent(&end));
+ 				if (SDL_KEYDOWN == end.type) {
 					quit = 0;
 					break;
 				}
 			}
-			break;
+			break;	
 		}
 	}
 

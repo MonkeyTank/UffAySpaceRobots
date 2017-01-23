@@ -3,14 +3,11 @@
 int room2(SDL_Window *mainWindow) {
 
 	//create hitboxes
-	SDL_Rect colorHB, mensaHB, thingHB, numPadHB;
-	SDL_DisplayMode mode;
-	SDL_GetCurrentDisplayMode(0, &mode);
 
-	colorHB.x = COLOR_X, colorHB.y = COLOR_Y, colorHB.w = COLOR_WIDTH, colorHB.h = COLOR_HEIGHT;
-	mensaHB.x = MENSA_X, mensaHB.y = MENSA_Y, mensaHB.w = MENSA_WIDTH, mensaHB.h = MENSA_HEIGHT;
-	thingHB.x = THING_X, thingHB.y = THING_Y, thingHB.w = THING_WIDTH, thingHB.h = THING_HEIGHT;
-	numPadHB.x = NUMPAD2_X, numPadHB.y = NUMPAD2_Y, numPadHB.w = NUMPAD2_WIDTH, numPadHB.h = NUMPAD2_HEIGHT;
+	SDL_Rect colorHB = { COLOR_X, COLOR_Y, COLOR_WIDTH, COLOR_HEIGHT };
+	SDL_Rect mensaHB = { MENSA_X, MENSA_Y, MENSA_WIDTH, MENSA_HEIGHT };
+	SDL_Rect thingHB = { THING_X, THING_Y, THING_WIDTH, THING_HEIGHT };
+	SDL_Rect numPadHB = { NUMPAD2_X, NUMPAD2_Y, NUMPAD2_WIDTH, NUMPAD2_HEIGHT };
 
 	//create renderer for room2, hide the system cursor
 	SDL_Renderer *rendererRoom2;
@@ -52,8 +49,8 @@ int room2(SDL_Window *mainWindow) {
 		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());
 	}
 
-	SDL_Rect dimensions;
-	dimensions.x = 0, dimensions.y = 0, dimensions.w = 3840, dimensions.h = 2160;
+	//set dimensions for backArrow hitbox
+	SDL_Rect dimensions = { 0, 0, 3840, 2160 };
 
 	SDL_Event mouse;
 	int x = -960;
@@ -67,7 +64,7 @@ int room2(SDL_Window *mainWindow) {
 	render(x, y, light, &dimensions, rendererRoom2);
 	SDL_RenderPresent(rendererRoom2);
 
-	flashback2();
+	flashback("text/flashback2.txt");
 	Mix_PlayMusic(backgroundMusic, -1);
 	int leave;
 

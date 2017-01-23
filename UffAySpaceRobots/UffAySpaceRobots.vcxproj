@@ -25,10 +25,7 @@
     <ClCompile Include="crossword.c" />
     <ClCompile Include="die.c" />
     <ClCompile Include="esc.c" />
-    <ClCompile Include="flashback1.c" />
-    <ClCompile Include="flashback1_1.c" />
-    <ClCompile Include="flashback2.c" />
-    <ClCompile Include="flashback3.c" />
+    <ClCompile Include="flashback.c" />
     <ClCompile Include="helper.c" />
     <ClCompile Include="labyrinth.c" />
     <ClCompile Include="main.c" />
@@ -51,9 +48,7 @@
     <ClInclude Include="crossword.h" />
     <ClInclude Include="die.h" />
     <ClInclude Include="esc.h" />
-    <ClInclude Include="flashback1.h" />
-    <ClInclude Include="flashback2.h" />
-    <ClInclude Include="flashback3.h" />
+    <ClInclude Include="flashback.h" />
     <ClInclude Include="helper.h" />
     <ClInclude Include="labyrinth.h" />
     <ClInclude Include="main.h" />

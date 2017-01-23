@@ -3,12 +3,8 @@
 int esc(SDL_Window *mainWindow, SDL_Renderer *rendererESC) {
 
 	//create hitboxes
-	SDL_Rect exit, resume;
-	SDL_DisplayMode mode;
-	SDL_GetCurrentDisplayMode(0, &mode);
-
-	exit.x = QUIT_X, exit.y = QUIT_Y, exit.w = BUTTON_WIDTH, exit.h = BUTTON_HEIGHT;
-	resume.x = RESUME_X, resume.y = RESUME_Y, resume.w = BUTTON_WIDTH, resume.h = BUTTON_HEIGHT;
+	SDL_Rect exit = { QUIT_X, QUIT_Y, BUTTON_WIDTH, BUTTON_HEIGHT };
+	SDL_Rect resume = { RESUME_X, RESUME_Y, BUTTON_WIDTH, BUTTON_HEIGHT };
 
 
 	//load graphics for background

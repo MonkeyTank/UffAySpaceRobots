@@ -58,23 +58,23 @@ int numPad3() {
 
 
 				//enter code
-				if (SDLK_7 == press.sym || SDLK_KP_7 == press.sym) {
+				if (SDLK_6 == press.sym || SDLK_KP_6 == press.sym) {
 
 					keys.type = 0;
 					keys = getKey(keys);
 					press = keys.key.keysym;
 
-					if (SDLK_1 == press.sym || SDLK_KP_1 == press.sym) {
+					if (SDLK_5 == press.sym || SDLK_KP_5 == press.sym) {
 						keys.type = 0;
 						keys = getKey(keys);
 						press = keys.key.keysym;
 
-						if (SDLK_3 == press.sym || SDLK_KP_3 == press.sym) {
+						if (SDLK_2 == press.sym || SDLK_KP_2 == press.sym) {
 							keys.type = 0;
 							keys = getKey(keys);
 							press = keys.key.keysym;
 
-							if (SDLK_7 == press.sym || SDLK_KP_7 == press.sym) {
+							if (SDLK_e == press.sym) {
 								keys.type = 0;
 								keys = getKey(keys);
 								press = keys.key.keysym;

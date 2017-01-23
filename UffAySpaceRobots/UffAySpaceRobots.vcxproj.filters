@@ -45,9 +45,6 @@
     <ClCompile Include="anagram.c">
       <Filter>Source Files\room1</Filter>
     </ClCompile>
-    <ClCompile Include="flashback1.c">
-      <Filter>Source Files\room1</Filter>
-    </ClCompile>
     <ClCompile Include="labyrinth.c">
       <Filter>Source Files\room1</Filter>
     </ClCompile>
@@ -59,12 +56,6 @@
     </ClCompile>
     <ClCompile Include="room2.c">
       <Filter>Source Files\room2</Filter>
-    </ClCompile>
-    <ClCompile Include="flashback2.c">
-      <Filter>Source Files\room2</Filter>
-    </ClCompile>
-    <ClCompile Include="flashback3.c">
-      <Filter>Source Files\room3</Filter>
     </ClCompile>
     <ClCompile Include="room3.c">
       <Filter>Source Files\room3</Filter>
@@ -93,9 +84,6 @@
     <ClCompile Include="mensa.c">
       <Filter>Source Files\room2</Filter>
     </ClCompile>
-    <ClCompile Include="flashback1_1.c">
-      <Filter>Source Files\room1</Filter>
-    </ClCompile>
     <ClCompile Include="esc.c">
       <Filter>Source Files\helper</Filter>
     </ClCompile>
@@ -111,15 +99,15 @@
     <ClCompile Include="beer.c">
       <Filter>Source Files\room3</Filter>
     </ClCompile>
+    <ClCompile Include="flashback.c">
+      <Filter>Source Files\helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="room1.h">
-      <Filter>Header Files\room1</Filter>
-    </ClInclude>
-    <ClInclude Include="flashback1.h">
       <Filter>Header Files\room1</Filter>
     </ClInclude>
     <ClInclude Include="anagram.h">
@@ -133,12 +121,6 @@
     </ClInclude>
     <ClInclude Include="room2.h">
       <Filter>Header Files\room2</Filter>
-    </ClInclude>
-    <ClInclude Include="flashback2.h">
-      <Filter>Header Files\room2</Filter>
-    </ClInclude>
-    <ClInclude Include="flashback3.h">
-      <Filter>Header Files\room3</Filter>
     </ClInclude>
     <ClInclude Include="room3.h">
       <Filter>Header Files\room3</Filter>
@@ -181,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="beer.h">
       <Filter>Header Files\room3</Filter>
+    </ClInclude>
+    <ClInclude Include="flashback.h">
+      <Filter>Header Files\helper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

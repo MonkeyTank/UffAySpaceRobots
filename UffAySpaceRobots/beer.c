@@ -48,12 +48,7 @@ void beer() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensions;
-
-	dimensions.x = 1870;
-	dimensions.y = 1030;
-	dimensions.w = 50;
-	dimensions.h = 50;
+	SDL_Rect dimensions = { 1870, 1030, 50, 50 };
 
 	while (quit) {
 		while (SDL_PollEvent(&keys)) {

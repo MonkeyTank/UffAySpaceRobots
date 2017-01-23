@@ -31,6 +31,7 @@ void crossword() {
 	//build texture background
 	SDL_Texture *pad = loadImage("images/room3/ratsel/crossword.bmp", rendererPopup);
 	SDL_Texture *hint = loadImage("images/room3/ratsel/crossword_hint.bmp", rendererPopup);
+	SDL_Texture *hint_hex = loadImage("images/room3/ratsel/crossword_hint_hex.bmp", rendererPopup);
 	SDL_Texture *error = loadImage("images/room3/ratsel/crossword_idiot.bmp", rendererPopup);
 
 	//build texture back arrow
@@ -49,12 +50,8 @@ void crossword() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensions;
-
-	dimensions.x = 1870;
-	dimensions.y = 1030;
-	dimensions.w = 50;
-	dimensions.h = 50;
+	SDL_Rect dimensions = { 1870, 1030, 50, 50 };
+	SDL_Rect tip = { 1820, 0, 200, 100 };
 
 	while (quit) {
 		while (SDL_PollEvent(&keys)) {
@@ -69,8 +66,17 @@ void crossword() {
 				if (XYInRect(dimensions, x_button, y_button)) {
 
 					quit = 0;
+					break;
 				}
-				break;
+
+				if (XYInRect(tip, x_button, y_button)) {
+
+					SDL_RenderClear(rendererPopup);
+					SDL_RenderCopy(rendererPopup, hint, NULL, NULL);
+					SDL_RenderPresent(rendererPopup);
+					SDL_Delay(2000);
+					break;
+				}
 
 			case SDL_KEYDOWN:
 				press = keys.key.keysym;
@@ -96,7 +102,7 @@ void crossword() {
 
 						if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
 							SDL_RenderClear(rendererPopup);
-							SDL_RenderCopy(rendererPopup, hint, NULL, NULL);
+							SDL_RenderCopy(rendererPopup, hint_hex, NULL, NULL);
 							SDL_RenderPresent(rendererPopup);
 							SDL_Delay(2000);
 							break;

@@ -1,6 +1,6 @@
 #include "main.h"
 
-int main() {
+int main(int argc, char **argv) {
 
 	int esc = 0;
 
@@ -21,45 +21,45 @@ int main() {
 		//rooms return 0 on death, 1 on success and -1 on quit
 		//die returns 0 on exit and 1 on restart
 
-		esc = room1(mainWindow);
+		//esc = room1(mainWindow);
 
-		if (!esc) {
-			if (die(mainWindow)) {
-				continue;
-			}
-			else {
-				Mix_Quit();
-				SDL_DestroyWindow(mainWindow);
-				SDL_Quit();
-				exit(EXIT_SUCCESS);
-			}
-		}
-		else if (-1 == esc) {
-			Mix_Quit();
-			SDL_DestroyWindow(mainWindow);
-			SDL_Quit();
-			exit(EXIT_SUCCESS);
-		}
+		//if (!esc) {
+		//	if (die(mainWindow)) {
+		//		continue;
+		//	}
+		//	else {
+		//		Mix_Quit();
+		//		SDL_DestroyWindow(mainWindow);
+		//		SDL_Quit();
+		//		exit(EXIT_SUCCESS);
+		//	}
+		//}
+		//else if (-1 == esc) {
+		//	Mix_Quit();
+		//	SDL_DestroyWindow(mainWindow);
+		//	SDL_Quit();
+		//	exit(EXIT_SUCCESS);
+		//}
 
-		esc = room2(mainWindow);
+		//esc = room2(mainWindow);
 
-		if (!esc) {
-			if (die(mainWindow)) {
-				continue;
-			}
-			else {
-				Mix_Quit();
-				SDL_DestroyWindow(mainWindow);
-				SDL_Quit();
-				exit(EXIT_SUCCESS);
-			}
-		}
-		else if (-1 == esc) {
-			Mix_Quit();
-			SDL_DestroyWindow(mainWindow);
-			SDL_Quit();
-			exit(EXIT_SUCCESS);
-		}
+		//if (!esc) {
+		//	if (die(mainWindow)) {
+		//		continue;
+		//	}
+		//	else {
+		//		Mix_Quit();
+		//		SDL_DestroyWindow(mainWindow);
+		//		SDL_Quit();
+		//		exit(EXIT_SUCCESS);
+		//	}
+		//}
+		//else if (-1 == esc) {
+		//	Mix_Quit();
+		//	SDL_DestroyWindow(mainWindow);
+		//	SDL_Quit();
+		//	exit(EXIT_SUCCESS);
+		//}
 
 		esc = room3(mainWindow);
 
@@ -80,6 +80,7 @@ int main() {
 			SDL_Quit();
 			exit(EXIT_SUCCESS);
 		}
+		flashback("text/flashback4.txt");
 		exit(EXIT_SUCCESS);
 	}
 }
