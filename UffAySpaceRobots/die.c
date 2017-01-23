@@ -11,13 +11,18 @@ int die(SDL_Window* dieWindow) {
 	exit.x = EXIT_X, exit.y = EXIT_Y, exit.w = BUTTON_WIDTH, exit.h = BUTTON_HEIGHT;
 	restart.x = RESTART_X, restart.y = RESTART_Y, restart.w = BUTTON_WIDTH, restart.h = BUTTON_HEIGHT;
 
-	//create renderer for die, hide the system cursor
+	//create renderer for die
 	SDL_Renderer *rendererDie;
 	rendererDie = SDL_CreateRenderer(dieWindow, -1, SDL_RENDERER_ACCELERATED);
 	if (NULL == rendererDie) {
 		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
 	}
 
+	//show cursor
+	SDL_ShowCursor(SDL_ENABLE);
+	SDL_Cursor *cursor;
+	cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
+	SDL_SetCursor(cursor);
 
 	///////////////////////////////////////////////MUSIC//////////////////////////////////////////////////
 	Mix_Music *backgroundMusic = NULL;
@@ -70,6 +75,8 @@ int die(SDL_Window* dieWindow) {
 					Mix_FreeMusic(backgroundMusic);
 					backgroundMusic = NULL;
 					SDL_DestroyRenderer(rendererDie);
+					SDL_FreeCursor(cursor);
+					SDL_ShowCursor(SDL_DISABLE);
 					return 0;
 
 				}
@@ -79,6 +86,8 @@ int die(SDL_Window* dieWindow) {
 					Mix_FreeMusic(backgroundMusic);
 					backgroundMusic = NULL;
 					SDL_DestroyRenderer(rendererDie);
+					SDL_FreeCursor(cursor);
+					SDL_ShowCursor(SDL_DISABLE);
 					return 1;
 
 				}

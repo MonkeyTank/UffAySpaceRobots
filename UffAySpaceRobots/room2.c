@@ -3,14 +3,14 @@
 int room2(SDL_Window *mainWindow) {
 
 	//create hitboxes
-	SDL_Rect colorHB, mensaHB, numbersHB, numPadHB;
+	SDL_Rect colorHB, mensaHB, thingHB, numPadHB;
 	SDL_DisplayMode mode;
 	SDL_GetCurrentDisplayMode(0, &mode);
 
 	colorHB.x = COLOR_X, colorHB.y = COLOR_Y, colorHB.w = COLOR_WIDTH, colorHB.h = COLOR_HEIGHT;
 	mensaHB.x = MENSA_X, mensaHB.y = MENSA_Y, mensaHB.w = MENSA_WIDTH, mensaHB.h = MENSA_HEIGHT;
-	numbersHB.x = NUM_X, numbersHB.y = NUM_Y, numbersHB.w = NUM_WIDTH, numbersHB.h = NUM_HEIGHT;
-	numPadHB.x = NUMPAD_X, numPadHB.y = NUMPAD_Y, numPadHB.w = NUMPAD_WIDTH, numPadHB.h = NUMPAD_HEIGHT;
+	thingHB.x = THING_X, thingHB.y = THING_Y, thingHB.w = THING_WIDTH, thingHB.h = THING_HEIGHT;
+	numPadHB.x = NUMPAD2_X, numPadHB.y = NUMPAD2_Y, numPadHB.w = NUMPAD2_WIDTH, numPadHB.h = NUMPAD2_HEIGHT;
 
 	//create renderer for room2, hide the system cursor
 	SDL_Renderer *rendererRoom2;
@@ -46,7 +46,7 @@ int room2(SDL_Window *mainWindow) {
 	}
 
 	SDL_Texture *light;
-	light = loadColorKeyImage("images/light_cursor.bmp", rendererRoom2, 0xFF, 0xFF, 0xFF);
+	light = loadColorKeyImage("images/light_cursor_fade_small.bmp", rendererRoom2, 0xFF, 0xFF, 0xFF);
 
 	if (!light) {
 		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());
@@ -116,9 +116,9 @@ int room2(SDL_Window *mainWindow) {
 					mensa();
 
 				}
-				else if (XYInRect(numbersHB, x_button, y_button)) {
+				else if (XYInRect(thingHB, x_button, y_button)) {
 
-					labyrinth();
+					things();
 
 				}
 				break;

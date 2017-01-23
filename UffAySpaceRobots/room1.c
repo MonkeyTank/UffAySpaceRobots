@@ -10,7 +10,7 @@ int room1(SDL_Window *mainWindow) {
 	anagramHB.x = ANA_X, anagramHB.y =ANA_Y, anagramHB.w = ANA_WIDTH, anagramHB.h = ANA_HEIGHT;
 	labyrinthHB.x = LAB_X, labyrinthHB.y = LAB_Y , labyrinthHB.w = LAB_WIDTH, labyrinthHB.h = LAB_HEIGHT;
 	numbersHB.x = NUM_X, numbersHB.y = NUM_Y, numbersHB.w = NUM_WIDTH, numbersHB.h = NUM_HEIGHT;
-	numPadHB.x = NUMPAD_X, numPadHB.y = NUMPAD_Y, numPadHB.w = NUMPAD_WIDTH, numPadHB.h = NUMPAD_HEIGHT;
+	numPadHB.x = NUMPAD1_X, numPadHB.y = NUMPAD1_Y, numPadHB.w = NUMPAD1_WIDTH, numPadHB.h = NUMPAD1_HEIGHT;
 
 	//create renderer for room1, hide the system cursor
 	SDL_Renderer *rendererRoom1;
@@ -46,7 +46,7 @@ int room1(SDL_Window *mainWindow) {
 	}
 
 	SDL_Texture* light;
-	light = loadColorKeyImage("images/light_cursor.bmp", rendererRoom1, 0xFF, 0xFF, 0xFF);
+	light = loadColorKeyImage("images/light_cursor_fade_small.bmp", rendererRoom1, 0xFF, 0xFF, 0xFF);
 
 	if ( !light ) {
 		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());

@@ -3,7 +3,7 @@
 #include "colors.h"
 #include "mensa.h"
 #include "numPad2.h"
-#include "labyrinth.h"
+#include "things.h"
 #include "flashback2.h"
 #include "esc.h"
 
@@ -17,14 +17,14 @@
 #define MENSA_WIDTH 101
 #define MENSA_HEIGHT 47
 
-#define NUM_X 1122
-#define NUM_Y 214
-#define NUM_WIDTH 152
-#define NUM_HEIGHT 226
+#define NUMPAD2_X 242
+#define NUMPAD2_Y 242
+#define NUMPAD2_WIDTH 54
+#define NUMPAD2_HEIGHT 94
 
-#define LAB_X 1696
-#define LAB_Y 192
-#define LAB_WIDTH 1840
-#define LAB_HEIGHT 340
+#define THING_X 804
+#define THING_Y 662
+#define THING_WIDTH 75
+#define THING_HEIGHT 124
 
 int room2(SDL_Window* mainWindow);

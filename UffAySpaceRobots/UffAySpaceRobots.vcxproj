@@ -20,7 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="anagram.c" />
+    <ClCompile Include="beer.c" />
     <ClCompile Include="colors.c" />
+    <ClCompile Include="crossword.c" />
     <ClCompile Include="die.c" />
     <ClCompile Include="esc.c" />
     <ClCompile Include="flashback1.c" />
@@ -38,11 +40,15 @@
     <ClCompile Include="room1.c" />
     <ClCompile Include="room2.c" />
     <ClCompile Include="room3.c" />
+    <ClCompile Include="sudoku.c" />
+    <ClCompile Include="things.c" />
     <ClCompile Include="warning.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anagram.h" />
+    <ClInclude Include="beer.h" />
     <ClInclude Include="colors.h" />
+    <ClInclude Include="crossword.h" />
     <ClInclude Include="die.h" />
     <ClInclude Include="esc.h" />
     <ClInclude Include="flashback1.h" />
@@ -59,6 +65,8 @@
     <ClInclude Include="room1.h" />
     <ClInclude Include="room2.h" />
     <ClInclude Include="room3.h" />
+    <ClInclude Include="sudoku.h" />
+    <ClInclude Include="things.h" />
     <ClInclude Include="warning.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

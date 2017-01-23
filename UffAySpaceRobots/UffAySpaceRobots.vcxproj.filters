@@ -99,6 +99,18 @@
     <ClCompile Include="esc.c">
       <Filter>Source Files\helper</Filter>
     </ClCompile>
+    <ClCompile Include="things.c">
+      <Filter>Source Files\room2</Filter>
+    </ClCompile>
+    <ClCompile Include="crossword.c">
+      <Filter>Source Files\room3</Filter>
+    </ClCompile>
+    <ClCompile Include="sudoku.c">
+      <Filter>Source Files\room3</Filter>
+    </ClCompile>
+    <ClCompile Include="beer.c">
+      <Filter>Source Files\room3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -157,6 +169,18 @@
     </ClInclude>
     <ClInclude Include="esc.h">
       <Filter>Header Files\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="things.h">
+      <Filter>Header Files\room2</Filter>
+    </ClInclude>
+    <ClInclude Include="crossword.h">
+      <Filter>Header Files\room3</Filter>
+    </ClInclude>
+    <ClInclude Include="sudoku.h">
+      <Filter>Header Files\room3</Filter>
+    </ClInclude>
+    <ClInclude Include="beer.h">
+      <Filter>Header Files\room3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

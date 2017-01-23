@@ -3,14 +3,14 @@
 int room3(SDL_Window *mainWindow) {
 
 	//create hitboxes
-	SDL_Rect anagramHB, labyrinthHB, numbersHB, numPadHB;
+	SDL_Rect crossHB, beerHB, sudokuHB, numPadHB;
 	SDL_DisplayMode mode;
 	SDL_GetCurrentDisplayMode(0, &mode);
 
-	anagramHB.x = ANA_X, anagramHB.y = ANA_Y, anagramHB.w = ANA_WIDTH, anagramHB.h = ANA_HEIGHT;
-	labyrinthHB.x = LAB_X, labyrinthHB.y = LAB_Y, labyrinthHB.w = LAB_WIDTH, labyrinthHB.h = LAB_HEIGHT;
-	numbersHB.x = NUM_X, numbersHB.y = NUM_Y, numbersHB.w = NUM_WIDTH, numbersHB.h = NUM_HEIGHT;
-	numPadHB.x = NUMPAD_X, numPadHB.y = NUMPAD_Y, numPadHB.w = NUMPAD_WIDTH, numPadHB.h = NUMPAD_HEIGHT;
+	crossHB.x = CROSS_X, crossHB.y = CROSS_Y, crossHB.w = CROSS_WIDTH, crossHB.h = CROSS_HEIGHT;
+	beerHB.x = BEER_X, beerHB.y = BEER_Y, beerHB.w = BEER_WIDTH, beerHB.h = BEER_HEIGHT;
+	sudokuHB.x = SUD_X, sudokuHB.y = SUD_Y, sudokuHB.w = SUD_WIDTH, sudokuHB.h = SUD_HEIGHT;
+	numPadHB.x = NUMPAD3_X, numPadHB.y = NUMPAD3_Y, numPadHB.w = NUMPAD3_WIDTH, numPadHB.h = NUMPAD3_HEIGHT;
 
 	//create renderer for room3, hide the system cursor
 	SDL_Renderer *rendererRoom3;
@@ -46,7 +46,7 @@ int room3(SDL_Window *mainWindow) {
 	}
 
 	SDL_Texture *light;
-	light = loadColorKeyImage("images/light_cursor.bmp", rendererRoom3, 0xFF, 0xFF, 0xFF);
+	light = loadColorKeyImage("images/light_cursor_fade_small.bmp", rendererRoom3, 0xFF, 0xFF, 0xFF);
 
 	if (!light) {
 		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());
@@ -109,19 +109,19 @@ int room3(SDL_Window *mainWindow) {
 					}
 
 				}
-				else if (XYInRect(anagramHB, x_button, y_button)) {
+				else if (XYInRect(crossHB, x_button, y_button)) {
 
-					anagram();
-
-				}
-				else if (XYInRect(numbersHB, x_button, y_button)) {
-
-					numbers();
+					crossword();
 
 				}
-				else if (XYInRect(labyrinthHB, x_button, y_button)) {
+				else if (XYInRect(sudokuHB, x_button, y_button)) {
 
-					labyrinth();
+					sudoku();
+
+				}
+				else if (XYInRect(beerHB, x_button, y_button)) {
+
+					beer();
 
 				}
 				break;
