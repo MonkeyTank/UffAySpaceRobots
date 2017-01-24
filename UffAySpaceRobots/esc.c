@@ -3,13 +3,13 @@
 int esc(SDL_Window *mainWindow, SDL_Renderer *rendererESC) {
 
 	//create hitboxes
-	SDL_Rect exit = { QUIT_X, QUIT_Y, BUTTON_WIDTH, BUTTON_HEIGHT };
-	SDL_Rect resume = { RESUME_X, RESUME_Y, BUTTON_WIDTH, BUTTON_HEIGHT };
+	SDL_Rect exit = { QUIT_X, QUIT_Y, ESC_BUTTON_WIDTH, ESC_BUTTON_HEIGHT };
+	SDL_Rect resume = { RESUME_X, RESUME_Y, ESC_BUTTON_WIDTH, ESC_BUTTON_HEIGHT };
 
 
 	//load graphics for background
 	SDL_Texture* background;
-	background = loadImage("images/esc.bmp", rendererESC);
+	background = loadImage("images/quit_menu.bmp", rendererESC);
 
 	if (!background) {
 		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());

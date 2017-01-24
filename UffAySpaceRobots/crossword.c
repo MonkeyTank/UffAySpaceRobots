@@ -30,7 +30,6 @@ void crossword() {
 
 	//build texture background
 	SDL_Texture *pad = loadImage("images/room3/ratsel/crossword.bmp", rendererPopup);
-	SDL_Texture *hint = loadImage("images/room3/ratsel/crossword_hint.bmp", rendererPopup);
 	SDL_Texture *hint_hex = loadImage("images/room3/ratsel/crossword_hint_hex.bmp", rendererPopup);
 	SDL_Texture *error = loadImage("images/room3/ratsel/crossword_idiot.bmp", rendererPopup);
 
@@ -72,7 +71,7 @@ void crossword() {
 				if (XYInRect(tip, x_button, y_button)) {
 
 					SDL_RenderClear(rendererPopup);
-					SDL_RenderCopy(rendererPopup, hint, NULL, NULL);
+					SDL_RenderCopy(rendererPopup, hint_hex, NULL, NULL);
 					SDL_RenderPresent(rendererPopup);
 					SDL_Delay(2000);
 					break;
@@ -143,7 +142,7 @@ void crossword() {
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_DestroyTexture(pad);
 	SDL_DestroyTexture(arrow);
-	SDL_DestroyTexture(hint);
+	SDL_DestroyTexture(hint_hex);
 	SDL_DestroyTexture(error);
 	SDL_DestroyRenderer(rendererPopup);
 	SDL_DestroyWindow(popup);

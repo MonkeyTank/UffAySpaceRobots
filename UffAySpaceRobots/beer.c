@@ -2,6 +2,8 @@
 
 void beer() {
 
+	SDL_Rect asciiRect = { 768, 240, 383, 600 };
+
 	//build window
 	SDL_Window *popup;
 	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1980, 1080, SDL_WINDOW_BORDERLESS);
@@ -85,9 +87,12 @@ void beer() {
 
 					if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
 						SDL_RenderClear(rendererPopup);
-						SDL_RenderCopy(rendererPopup, ascii, NULL, NULL);
+						SDL_RenderCopy(rendererPopup, ascii, NULL, &asciiRect);
 						SDL_RenderPresent(rendererPopup);
-						SDL_Delay(2000);
+						
+						keys.type = 0;
+						keys = getKey(keys);
+						press = keys.key.keysym;
 						break;
 					}
 				}

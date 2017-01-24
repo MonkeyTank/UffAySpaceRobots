@@ -1,18 +1,9 @@
 #include "anagram.h"
 
-void anagram() {
+void anagram(SDL_Window *mainWindow, SDL_Renderer *rendererPopup) {
 	
-	//build window
-	SDL_Window *popup;
-	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1600, 400, SDL_WINDOW_BORDERLESS);
-	if (popup == NULL) {
-		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
-	}
-	
-	//set window size
-	if (0 != SDL_SetWindowFullscreen(popup, 0)) {
-		fprintf(stderr, "Fullscreen not possible! SDL_Error: %s", SDL_GetError());
-	}
+	SDL_Rect hintHB = { 170, 664, 200, 75 };
+	SDL_Rect anagram_rect = { 160, 340, 1600, 400 };
 
 	//show cursor in window
 	SDL_ShowCursor(SDL_ENABLE);
@@ -20,15 +11,10 @@ void anagram() {
 	cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
 	SDL_SetCursor(cursor);
 
-	//build renderer
-	SDL_Renderer *rendererPopup;
-	rendererPopup = SDL_CreateRenderer(popup, -1, SDL_RENDERER_ACCELERATED);
-	if (NULL == rendererPopup) {
-		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
-	}
 
 	//build texture background
 	SDL_Texture *pad = loadImage("images/room1/anagram.bmp", rendererPopup);
+	SDL_Texture *hint= loadImage("images/room1/anagram_hint.bmp", rendererPopup);
 
 	//build texture back arrow
 	SDL_Texture *arrow = loadColorKeyImage("images/backArrow.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
@@ -43,7 +29,7 @@ void anagram() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensions = { 1550, 350, 50, 50 };
+	SDL_Rect dimensions = { 1710, 690, 50, 50 };
 
 	while (quit) {
 		while (SDL_PollEvent(&mouse)) {
@@ -57,16 +43,24 @@ void anagram() {
 				if ( XYInRect(dimensions, x_button, y_button) ) {
 
 					quit = 0;
-					
+					break;
 				}
-				break;
+				
+				if (XYInRect(hintHB, x_button, y_button)) {
+
+					SDL_RenderClear(rendererPopup);
+					SDL_RenderCopy(rendererPopup, hint, NULL, &anagram_rect);
+					SDL_RenderPresent(rendererPopup);
+					SDL_Delay(8000);
+					break;
+				}
 
 			default:
 				break;
 			}
 
 			SDL_RenderClear(rendererPopup);
-			SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
+			SDL_RenderCopy(rendererPopup, pad, NULL, &anagram_rect);
 			render(dimensions.x, dimensions.y, arrow, &dimensions, rendererPopup);
 			SDL_RenderPresent(rendererPopup);
 		}
@@ -77,6 +71,5 @@ void anagram() {
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_DestroyTexture(pad);
 	SDL_DestroyTexture(arrow);
-	SDL_DestroyRenderer(rendererPopup);
-	SDL_DestroyWindow(popup);
+	SDL_DestroyTexture(hint);
 }

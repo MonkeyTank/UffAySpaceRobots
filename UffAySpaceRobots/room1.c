@@ -10,6 +10,7 @@ int room1(SDL_Window *mainWindow) {
 	SDL_Rect labyrinthHB = { LAB_X, LAB_Y, LAB_WIDTH, LAB_HEIGHT };
 	SDL_Rect numbersHB = { NUM_X, NUM_Y, NUM_WIDTH, NUM_HEIGHT };
 	SDL_Rect numPadHB = { NUMPAD1_X, NUMPAD1_Y, NUMPAD1_WIDTH, NUMPAD1_HEIGHT };
+	SDL_Rect paperclipHB = {PAPERCLIP_X, PAPERCLIP_Y, PAPERCLIP_W, PAPERCLIP_H};
 
 	//create renderer for room1, hide the system cursor
 	SDL_Renderer *rendererRoom1;
@@ -45,9 +46,16 @@ int room1(SDL_Window *mainWindow) {
 	}
 
 	SDL_Texture* light;
-	light = loadColorKeyImage("images/light_cursor_fade_small.bmp", rendererRoom1, 0xFF, 0xFF, 0xFF);
+	light = loadColorKeyImage("images/light_cursor_final.bmp", rendererRoom1, 0xFF, 0xFF, 0xFF);
 
 	if ( !light ) {
+		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());
+	}
+
+	SDL_Texture* paperclip;
+	paperclip = loadColorKeyImage("images/paperclip.bmp", rendererRoom1, 0xFF, 0xFF, 0xFF);
+
+	if (!paperclip) {
 		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());
 	}
 
@@ -63,10 +71,12 @@ int room1(SDL_Window *mainWindow) {
 
 	SDL_RenderClear(rendererRoom1);
 	SDL_RenderCopy(rendererRoom1, background, NULL, NULL);
+	SDL_RenderCopy(rendererRoom1, paperclip, NULL, &paperclipHB);
 	render(x, y, light, &dimensions, rendererRoom1);
 	SDL_RenderPresent(rendererRoom1);
 
 	//tell story
+	welcome(mainWindow, rendererRoom1);
 	flashback("text/flashback1.txt");
 	flashback("text/flashback1_1.txt");
 	Mix_PlayMusic(backgroundMusic, -1);
@@ -85,7 +95,7 @@ int room1(SDL_Window *mainWindow) {
 				if (XYInRect(numPadHB, x_button, y_button)) {
 	
 	//numPad() returns 0 on esc, 1 on success and -1 on failure
-					leave = numPad1();
+					leave = numPad1(mainWindow, rendererRoom1);
 
 					if (-1 == leave) {
 						Mix_HaltMusic();
@@ -93,6 +103,7 @@ int room1(SDL_Window *mainWindow) {
 						backgroundMusic = NULL;
 						SDL_DestroyTexture(background);
 						SDL_DestroyTexture(light);
+						SDL_DestroyTexture(paperclip);
 						SDL_DestroyRenderer(rendererRoom1);
 						return 0;
 					}
@@ -102,6 +113,7 @@ int room1(SDL_Window *mainWindow) {
 						backgroundMusic = NULL;
 						SDL_DestroyTexture(background);
 						SDL_DestroyTexture(light);
+						SDL_DestroyTexture(paperclip);
 						SDL_DestroyRenderer(rendererRoom1);
 						return 1;
 					}
@@ -109,17 +121,22 @@ int room1(SDL_Window *mainWindow) {
 				}
 				else if (XYInRect(anagramHB, x_button, y_button)) {
 					
-					anagram();				
+					anagram(mainWindow, rendererRoom1);				
 
 				}
 				else if (XYInRect(numbersHB, x_button, y_button)) {
 
-					numbers();
+					numbers(mainWindow, rendererRoom1);
 
 				}
 				else if (XYInRect(labyrinthHB, x_button, y_button)) {
 
 					labyrinth();
+
+				}
+				else if (XYInRect(paperclipHB, x_button, y_button)) {
+
+					help(mainWindow, rendererRoom1);
 
 				}
 				break;
@@ -140,6 +157,7 @@ int room1(SDL_Window *mainWindow) {
 						backgroundMusic = NULL;
 						SDL_DestroyTexture(background);
 						SDL_DestroyTexture(light);
+						SDL_DestroyTexture(paperclip);
 						SDL_DestroyRenderer(rendererRoom1);
 						return -1;
 					}
@@ -153,6 +171,7 @@ int room1(SDL_Window *mainWindow) {
 		//present in mainWindow
 			SDL_RenderClear(rendererRoom1);
 			SDL_RenderCopy(rendererRoom1, background, NULL, NULL);
+			SDL_RenderCopy(rendererRoom1, paperclip, NULL, &paperclipHB);
 			render(x, y, light, &dimensions, rendererRoom1);
 			SDL_RenderPresent(rendererRoom1);
 		}

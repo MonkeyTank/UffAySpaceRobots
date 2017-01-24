@@ -102,6 +102,12 @@
     <ClCompile Include="flashback.c">
       <Filter>Source Files\helper</Filter>
     </ClCompile>
+    <ClCompile Include="welcome.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="help.c">
+      <Filter>Source Files\helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -166,6 +172,15 @@
     </ClInclude>
     <ClInclude Include="flashback.h">
       <Filter>Header Files\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="help.h">
+      <Filter>Header Files\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="welcome.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,32 +1,16 @@
 #include "numbers.h"
 
-void numbers() {
+void numbers(SDL_Window *mainWindow, SDL_Renderer *rendererPopup) {
 
-	//build window
-	SDL_Window *popup;
-	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 375, SDL_WINDOW_BORDERLESS);
-	if (popup == NULL) {
-		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
-	}
-
-	//set window size
-	if (0 != SDL_SetWindowFullscreen(popup, 0)) {
-		fprintf(stderr, "Fullscreen not possible! SDL_Error: %s", SDL_GetError());
-	}
-
+	SDL_Rect tippHB = { 360, 353, 163, 67 };
+	SDL_Rect numbers_rect = { 360, 353, 1200, 375 };
+	
 	//show cursor in window and set a new one
 	SDL_ShowCursor(SDL_ENABLE);
 	SDL_Cursor *cursor;
 	cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
 	SDL_SetCursor(cursor);
 
-
-	//build renderer
-	SDL_Renderer *rendererPopup;
-	rendererPopup = SDL_CreateRenderer(popup, -1, SDL_RENDERER_ACCELERATED);
-	if (NULL == rendererPopup) {
-		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
-	}
 
 	//build texture background
 	SDL_Texture *pad = loadImage("images/room1/zahlenreihe.bmp", rendererPopup);
@@ -47,9 +31,7 @@ void numbers() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensions = { 1150, 325, 50, 50 };
-
-	SDL_Rect tippHB = { 0, 0, 163, 67 };
+	SDL_Rect dimensions = { 1510, 678, 50, 50 };
 
 
 	while (quit) {
@@ -69,7 +51,7 @@ void numbers() {
 				if (XYInRect(tippHB, x_button, y_button)) {
 
 					SDL_RenderClear(rendererPopup);
-					SDL_RenderCopy(rendererPopup, idiot, NULL, NULL);
+					SDL_RenderCopy(rendererPopup, idiot, NULL, &numbers_rect);
 					SDL_RenderPresent(rendererPopup);
 
 					mouse.type = 0;
@@ -78,10 +60,10 @@ void numbers() {
 
 					if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
 						SDL_RenderClear(rendererPopup);
-						SDL_RenderCopy(rendererPopup, hint, NULL, NULL);
+						SDL_RenderCopy(rendererPopup, hint, NULL, &numbers_rect);
 						SDL_RenderPresent(rendererPopup);
 
-						SDL_Delay(5000);
+						SDL_Delay(8000);
 					}
 				
 				}
@@ -93,7 +75,7 @@ void numbers() {
 			}
 
 			SDL_RenderClear(rendererPopup);
-			SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
+			SDL_RenderCopy(rendererPopup, pad, NULL, &numbers_rect);
 			render(dimensions.x, dimensions.y, arrow, &dimensions, rendererPopup);
 			SDL_RenderPresent(rendererPopup);
 		}
@@ -106,6 +88,4 @@ void numbers() {
 	SDL_DestroyTexture(arrow);
 	SDL_DestroyTexture(hint);
 	SDL_DestroyTexture(idiot);
-	SDL_DestroyRenderer(rendererPopup);
-	SDL_DestroyWindow(popup);
 }

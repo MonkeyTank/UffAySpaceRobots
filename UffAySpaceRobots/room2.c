@@ -43,7 +43,7 @@ int room2(SDL_Window *mainWindow) {
 	}
 
 	SDL_Texture *light;
-	light = loadColorKeyImage("images/light_cursor_fade_small.bmp", rendererRoom2, 0xFF, 0xFF, 0xFF);
+	light = loadColorKeyImage("images/light_cursor_final.bmp", rendererRoom2, 0xFF, 0xFF, 0xFF);
 
 	if (!light) {
 		fprintf(stderr, "Could not load image! SDL_Error: %s", SDL_GetError());
@@ -81,7 +81,7 @@ int room2(SDL_Window *mainWindow) {
 				if (XYInRect(numPadHB, x_button, y_button)) {
 
 	//numPad() returns 0 on esc, 1 on success and -1 on failure
-					leave = numPad2();
+					leave = numPad2(mainWindow, rendererRoom2);
 
 					if (-1 == leave) {
 						Mix_HaltMusic();

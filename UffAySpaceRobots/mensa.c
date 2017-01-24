@@ -71,7 +71,7 @@ void mensa() {
 					SDL_RenderClear(rendererPopup);
 					SDL_RenderCopy(rendererPopup, idiot, NULL, NULL);
 					SDL_RenderPresent(rendererPopup);
-					SDL_Delay(3000);
+					SDL_Delay(5000);
 				}
 
 			default:

@@ -34,7 +34,7 @@ void labyrinth() {
 	SDL_Texture *arrow = loadImage("images/backArrow.bmp", rendererPopup);
 
 	//build texture pocket light
-	SDL_Texture *light = loadColorKeyImage("images/light_small.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
+	SDL_Texture *light = loadColorKeyImage("images/light_small_fade.bmp", rendererPopup, 0xFF, 0xFF, 0xFF);
 
 	//variables to track clicks
 	SDL_Event mouse;

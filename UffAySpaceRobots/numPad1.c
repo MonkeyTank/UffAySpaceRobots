@@ -1,20 +1,34 @@
 #include "numPad1.h"
 
-int numPad1() {
+int numPad1(SDL_Window *mainWindow, SDL_Renderer *rendererPopup) {
 
 	int warnings = 0;
+	SDL_Rect pad_rect = { 610, 90, 700, 900 };
 
-	//build window
-	SDL_Window *popup;
-	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 700, 900, SDL_WINDOW_BORDERLESS);
-	if (popup == NULL) {
-		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
-	}
+	SDL_Rect ESC = { ESC_X, ESC_Y, BUTTON_W, BUTTON_H2 };
+	SDL_Rect ZERO = { ZERO_X, ZERO_Y, BUTTON_W, BUTTON_H2 };
+	SDL_Rect ENTER = { ENTER_X, ENTER_Y, BUTTON_W, BUTTON_H2 };
 
-	//set window mode
-	if (0 != SDL_SetWindowFullscreen(popup, 0)) {
-		fprintf(stderr, "Fullscreen not possible! SDL_Error: %s", SDL_GetError());
-	}
+	SDL_Rect ONE = { ONE_X, ONE_Y, BUTTON_W, BUTTON_H2 };
+	SDL_Rect TWO = { TWO_X, TWO_Y, BUTTON_W, BUTTON_H2 };
+	SDL_Rect THREE = { THREE_X, THREE_Y, BUTTON_W, BUTTON_H2 };
+
+	SDL_Rect FOUR = { FOUR_X, FOUR_Y, BUTTON_W, BUTTON_H2 };
+	SDL_Rect FIVE = { FIVE_X, FIVE_Y, BUTTON_W, BUTTON_H2 };
+	SDL_Rect SIX = { SIX_X, SIX_Y, BUTTON_W, BUTTON_H2 };
+
+	SDL_Rect SEVEN = { SEVEN_X, SEVEN_Y, BUTTON_W, BUTTON_H2 };
+	SDL_Rect EIGHT = { EIGHT_X, EIGHT_Y, BUTTON_W, BUTTON_H2 };
+	SDL_Rect NINE = { NINE_X, NINE_Y, BUTTON_W, BUTTON_H2 };
+
+	SDL_Rect A = { A_X, A_Y, BUTTON_W, BUTTON_H1 };
+	SDL_Rect B = { B_X, B_Y, BUTTON_W, BUTTON_H1 };
+	SDL_Rect C = { C_X, C_Y, BUTTON_W, BUTTON_H1 };
+
+	SDL_Rect D = { D_X, D_Y, BUTTON_W, BUTTON_H1 };
+	SDL_Rect E = { E_X, E_Y, BUTTON_W, BUTTON_H1 };
+	SDL_Rect F = { F_X, F_Y, BUTTON_W, BUTTON_H1 };
+
 
 	//show cursor
 	SDL_ShowCursor(SDL_ENABLE);
@@ -22,26 +36,83 @@ int numPad1() {
 	cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
 	SDL_SetCursor(cursor);
 
-	//create renderer
-	SDL_Renderer *rendererPopup;
-	rendererPopup = SDL_CreateRenderer(popup, -1, SDL_RENDERER_ACCELERATED);
-	if (NULL == rendererPopup) {
-		fprintf(stderr, "Renderer could not be created! SDL_Error: %s", SDL_GetError());
-	}
-
 	SDL_Texture *pad = loadImage("images/numpad/numpad.bmp", rendererPopup);
 
 	//variables to track clicks
 	SDL_Event keys;
 	SDL_Keysym press;
 
-
+	int x = 0;
+	int y = 0;
 	int x_button = 250;
 	int y_button = 250;
 
 	while (1) {
 		while (SDL_PollEvent(&keys)) {
 			switch (keys.type) {
+
+			case SDL_MOUSEBUTTONDOWN:
+				x = keys.button.x;
+				y = keys.button.y;
+
+				if (XYInRect(ESC, x, y)) {
+
+					SDL_FreeCursor(cursor);
+					SDL_ShowCursor(SDL_DISABLE);
+					SDL_DestroyTexture(pad);
+					return 0;
+				}
+
+
+				//enter code
+				if (XYInRect(SEVEN, x, y)) {
+
+					keys.type = 0;
+					keys = getKey(keys);
+					press = keys.key.keysym;
+
+					if (XYInRect(ONE, x, y)) {
+						keys.type = 0;
+						keys = getKey(keys);
+						press = keys.key.keysym;
+
+						if (XYInRect(THREE, x, y)) {
+							keys.type = 0;
+							keys = getKey(keys);
+							press = keys.key.keysym;
+
+							if (XYInRect(SEVEN, x, y)) {
+								keys.type = 0;
+								keys = getKey(keys);
+								press = keys.key.keysym;
+
+								if (XYInRect(ENTER, x, y)) {
+
+									SDL_FreeCursor(cursor);
+									SDL_ShowCursor(SDL_DISABLE);
+									SDL_DestroyTexture(pad);
+									return 1;
+
+								}
+							}
+						}
+					}
+				}
+
+				if (XYInRect(ENTER, x, y)) {
+					Mix_PauseMusic();
+
+					//warning returns 0 on death
+					if (0 == warning(warnings)) {
+						SDL_FreeCursor(cursor);
+						SDL_ShowCursor(SDL_DISABLE);
+						SDL_DestroyTexture(pad);
+						return -1;
+					}
+					Mix_ResumeMusic();
+					warnings++;
+					break;
+				}
 
 			case SDL_KEYDOWN:
 				press = keys.key.keysym;
@@ -51,8 +122,6 @@ int numPad1() {
 					SDL_FreeCursor(cursor);
 					SDL_ShowCursor(SDL_DISABLE);
 					SDL_DestroyTexture(pad);
-					SDL_DestroyRenderer(rendererPopup);
-					SDL_DestroyWindow(popup);
 					return 0;
 				}
 
@@ -84,8 +153,6 @@ int numPad1() {
 									SDL_FreeCursor(cursor);
 									SDL_ShowCursor(SDL_DISABLE);
 									SDL_DestroyTexture(pad);
-									SDL_DestroyRenderer(rendererPopup);
-									SDL_DestroyWindow(popup);
 									return 1;
 
 								}
@@ -102,8 +169,6 @@ int numPad1() {
 						SDL_FreeCursor(cursor);
 						SDL_ShowCursor(SDL_DISABLE);
 						SDL_DestroyTexture(pad);
-						SDL_DestroyRenderer(rendererPopup);
-						SDL_DestroyWindow(popup);
 						return -1;
 					}
 					Mix_ResumeMusic();
@@ -116,7 +181,7 @@ int numPad1() {
 			}
 
 			SDL_RenderClear(rendererPopup);
-			SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
+			SDL_RenderCopy(rendererPopup, pad, NULL, &pad_rect);
 			SDL_RenderPresent(rendererPopup);
 		}
 	}
@@ -124,6 +189,5 @@ int numPad1() {
 	SDL_FreeCursor(cursor);
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_DestroyTexture(pad);
-	SDL_DestroyRenderer(rendererPopup);
-	SDL_DestroyWindow(popup);
+
 }

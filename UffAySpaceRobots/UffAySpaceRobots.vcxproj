@@ -26,6 +26,7 @@
     <ClCompile Include="die.c" />
     <ClCompile Include="esc.c" />
     <ClCompile Include="flashback.c" />
+    <ClCompile Include="help.c" />
     <ClCompile Include="helper.c" />
     <ClCompile Include="labyrinth.c" />
     <ClCompile Include="main.c" />
@@ -40,15 +41,18 @@
     <ClCompile Include="sudoku.c" />
     <ClCompile Include="things.c" />
     <ClCompile Include="warning.c" />
+    <ClCompile Include="welcome.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anagram.h" />
     <ClInclude Include="beer.h" />
     <ClInclude Include="colors.h" />
     <ClInclude Include="crossword.h" />
+    <ClInclude Include="defines.h" />
     <ClInclude Include="die.h" />
     <ClInclude Include="esc.h" />
     <ClInclude Include="flashback.h" />
+    <ClInclude Include="help.h" />
     <ClInclude Include="helper.h" />
     <ClInclude Include="labyrinth.h" />
     <ClInclude Include="main.h" />
@@ -63,6 +67,7 @@
     <ClInclude Include="sudoku.h" />
     <ClInclude Include="things.h" />
     <ClInclude Include="warning.h" />
+    <ClInclude Include="welcome.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{54FB983F-7596-4255-A2E6-7048350579D9}</ProjectGuid>

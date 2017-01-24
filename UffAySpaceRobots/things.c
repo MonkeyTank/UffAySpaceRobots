@@ -28,7 +28,7 @@ void things() {
 	}
 
 	//build texture background
-	SDL_Texture *pad = loadImage("images/room2/ratsel/dinge.bmp", rendererPopup);
+	SDL_Texture *pad = loadImage("images/room2/ratsel/dingeratsel.bmp", rendererPopup);
 	SDL_Texture *error = loadImage("images/room2/ratsel/dinge_idiot.bmp", rendererPopup);
 	SDL_Texture *success = loadImage("images/room2/ratsel/dinge_success.bmp", rendererPopup);
 	SDL_Texture *hint = loadImage("images/room2/ratsel/dinge_hint.bmp", rendererPopup);
@@ -93,7 +93,7 @@ void things() {
 							SDL_RenderClear(rendererPopup);
 							SDL_RenderCopy(rendererPopup, success, NULL, NULL);
 							SDL_RenderPresent(rendererPopup);
-							SDL_Delay(3000);
+							SDL_Delay(8000);
 							break;
 
 						}
@@ -101,7 +101,7 @@ void things() {
 							SDL_RenderClear(rendererPopup);
 							SDL_RenderCopy(rendererPopup, error, NULL, NULL);
 							SDL_RenderPresent(rendererPopup);
-							SDL_Delay(2000);
+							SDL_Delay(5000);
 							break;
 						}
 					}
@@ -109,7 +109,7 @@ void things() {
 						SDL_RenderClear(rendererPopup);
 						SDL_RenderCopy(rendererPopup, error, NULL, NULL);
 						SDL_RenderPresent(rendererPopup);
-						SDL_Delay(2000);
+						SDL_Delay(5000);
 						break;
 					}
 				}
@@ -129,7 +129,7 @@ void things() {
 							SDL_RenderClear(rendererPopup);
 							SDL_RenderCopy(rendererPopup, hint, NULL, NULL);
 							SDL_RenderPresent(rendererPopup);
-							SDL_Delay(3000);
+							SDL_Delay(5000);
 							break;
 
 						}
@@ -145,7 +145,7 @@ void things() {
 						SDL_RenderClear(rendererPopup);
 						SDL_RenderCopy(rendererPopup, error, NULL, NULL);
 						SDL_RenderPresent(rendererPopup);
-						SDL_Delay(2000);
+						SDL_Delay(5000);
 						break;
 					}
 				}
@@ -153,7 +153,7 @@ void things() {
 					SDL_RenderClear(rendererPopup);
 					SDL_RenderCopy(rendererPopup, error, NULL, NULL);
 					SDL_RenderPresent(rendererPopup);
-					SDL_Delay(2000);
+					SDL_Delay(5000);
 					break;
 				}
 

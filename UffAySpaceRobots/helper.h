@@ -1,5 +1,13 @@
 #pragma once
-#include "main.h"
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <SDL.h>
+#include <SDL_main.h>
+#include <SDL_mixer.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <string.h>
 
 SDL_Texture* loadImage(char* path, SDL_Renderer* renderer);
 SDL_Texture* loadColorKeyImage(char* path, SDL_Renderer* renderer, Uint8 r, Uint8 g, Uint8 b);

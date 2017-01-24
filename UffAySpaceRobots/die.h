@@ -1,5 +1,5 @@
 #pragma once
-#include "main.h"
+#include "helper.h"
 
 #define RESTART_X 778
 #define RESTART_Y 602

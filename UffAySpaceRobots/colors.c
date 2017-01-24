@@ -113,7 +113,7 @@ void colors() {
 											SDL_RenderClear(rendererPopup);
 											SDL_RenderCopy(rendererPopup, success, NULL, NULL);
 											SDL_RenderPresent(rendererPopup);
-											SDL_Delay(3000);
+											SDL_Delay(8000);
 										}
 										else {
 											SDL_RenderClear(rendererPopup);

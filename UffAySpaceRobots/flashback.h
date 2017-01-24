@@ -1,4 +1,4 @@
 #pragma once
-#include "main.h"
+#include "helper.h"
 
 void flashback(char *path);
