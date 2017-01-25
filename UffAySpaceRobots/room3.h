@@ -7,6 +7,7 @@
 #include "sudoku.h"
 #include "flashback.h"
 #include "esc.h"
+#include "captcha.h"
 
 #define CROSS_X 212
 #define CROSS_Y 588
