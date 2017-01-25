@@ -2,9 +2,11 @@
 
 void colors() {
 
+	SDL_Rect colors_rect = { 90, 164, 1740, 752 };
+
 	//build window
 	SDL_Window *popup;
-	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1740, 752, SDL_WINDOW_BORDERLESS);
+	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_BORDERLESS);
 	if (popup == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
 	}
@@ -111,57 +113,57 @@ void colors() {
 										if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
 
 											SDL_RenderClear(rendererPopup);
-											SDL_RenderCopy(rendererPopup, success, NULL, NULL);
+											SDL_RenderCopy(rendererPopup, success, NULL, &colors_rect);
 											SDL_RenderPresent(rendererPopup);
 											SDL_Delay(8000);
 										}
 										else {
 											SDL_RenderClear(rendererPopup);
-											SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+											SDL_RenderCopy(rendererPopup, error, NULL, &colors_rect);
 											SDL_RenderPresent(rendererPopup);
-											SDL_Delay(2000);
+											SDL_Delay(3000);
 										}
 									}
 									else {
 										SDL_RenderClear(rendererPopup);
-										SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+										SDL_RenderCopy(rendererPopup, error, NULL, &colors_rect);
 										SDL_RenderPresent(rendererPopup);
-										SDL_Delay(2000);
+										SDL_Delay(3000);
 									}
 								}
 								else {
 									SDL_RenderClear(rendererPopup);
-									SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+									SDL_RenderCopy(rendererPopup, error, NULL, &colors_rect);
 									SDL_RenderPresent(rendererPopup);
-									SDL_Delay(2000);
+									SDL_Delay(3000);
 								}
 							}
 							else {
 								SDL_RenderClear(rendererPopup);
-								SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+								SDL_RenderCopy(rendererPopup, error, NULL, &colors_rect);
 								SDL_RenderPresent(rendererPopup);
-								SDL_Delay(2000);
+								SDL_Delay(3000);
 							}
 						}
 						else {
 							SDL_RenderClear(rendererPopup);
-							SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+							SDL_RenderCopy(rendererPopup, error, NULL, &colors_rect);
 							SDL_RenderPresent(rendererPopup);
-							SDL_Delay(2000);
+							SDL_Delay(3000);
 						}
 					}
 					else {
 						SDL_RenderClear(rendererPopup);
-						SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+						SDL_RenderCopy(rendererPopup, error, NULL, &colors_rect);
 						SDL_RenderPresent(rendererPopup);
-						SDL_Delay(2000);
+						SDL_Delay(3000);
 					}
 				}
 				else {
 					SDL_RenderClear(rendererPopup);
-					SDL_RenderCopy(rendererPopup, error, NULL, NULL);
+					SDL_RenderCopy(rendererPopup, error, NULL, &colors_rect);
 					SDL_RenderPresent(rendererPopup);
-					SDL_Delay(2000);
+					SDL_Delay(3000);
 				}
 				break;
 
@@ -170,7 +172,7 @@ void colors() {
 			}
 
 			SDL_RenderClear(rendererPopup);
-			SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
+			SDL_RenderCopy(rendererPopup, pad, NULL, &colors_rect);
 			render(dimensions.x, dimensions.y, arrow, &dimensions, rendererPopup);
 			SDL_RenderPresent(rendererPopup);
 		}

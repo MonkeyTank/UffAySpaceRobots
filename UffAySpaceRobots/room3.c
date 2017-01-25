@@ -2,6 +2,10 @@
 
 int room3(SDL_Window *mainWindow) {
 
+	//attempts to enter right code
+	int attempts[1];
+	attempts[0] = 0;
+
 	//create hitboxes
 	SDL_Rect crossHB = { CROSS_X, CROSS_Y, CROSS_WIDTH, CROSS_HEIGHT };
 	SDL_Rect beerHB = { BEER_X, BEER_Y, BEER_WIDTH, BEER_HEIGHT };
@@ -80,7 +84,8 @@ int room3(SDL_Window *mainWindow) {
 				if (XYInRect(numPadHB, x_button, y_button)) {
 
 		//numPad() returns 0 on esc, 1 on success and -1 on failure
-					leave = numPad3(mainWindow, rendererRoom3);
+					leave = numPad3(mainWindow, rendererRoom3, attempts);
+					
 
 					if (-1 == leave) {
 						Mix_HaltMusic();
@@ -92,6 +97,7 @@ int room3(SDL_Window *mainWindow) {
 						return 0;
 					}
 					else if (1 == leave) {
+						captcha(mainWindow, rendererRoom3);
 						Mix_HaltMusic();
 						Mix_FreeMusic(backgroundMusic);
 						backgroundMusic = NULL;

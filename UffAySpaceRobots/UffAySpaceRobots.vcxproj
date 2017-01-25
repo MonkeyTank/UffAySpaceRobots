@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="anagram.c" />
     <ClCompile Include="beer.c" />
+    <ClCompile Include="captcha.c" />
     <ClCompile Include="colors.c" />
     <ClCompile Include="crossword.c" />
     <ClCompile Include="die.c" />
@@ -46,6 +47,7 @@
   <ItemGroup>
     <ClInclude Include="anagram.h" />
     <ClInclude Include="beer.h" />
+    <ClInclude Include="captcha.h" />
     <ClInclude Include="colors.h" />
     <ClInclude Include="crossword.h" />
     <ClInclude Include="defines.h" />

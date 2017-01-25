@@ -108,6 +108,9 @@
     <ClCompile Include="help.c">
       <Filter>Source Files\helper</Filter>
     </ClCompile>
+    <ClCompile Include="captcha.c">
+      <Filter>Source Files\room3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="welcome.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="captcha.h">
+      <Filter>Header Files\room3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

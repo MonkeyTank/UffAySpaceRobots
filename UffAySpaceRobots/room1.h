@@ -7,6 +7,7 @@
 #include "flashback.h"
 #include "esc.h"
 #include "help.h"
+#include "captcha.h"
 
 #define ANA_X 1124
 #define ANA_Y 795

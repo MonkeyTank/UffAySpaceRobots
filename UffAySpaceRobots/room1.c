@@ -2,6 +2,10 @@
 
 int room1(SDL_Window *mainWindow) {
 
+	//attempts to enter right code
+	int attempts [1];
+	attempts[0] = 0;
+
 	//create hitboxes
 	SDL_DisplayMode mode;
 	SDL_GetCurrentDisplayMode(0, &mode);
@@ -95,7 +99,7 @@ int room1(SDL_Window *mainWindow) {
 				if (XYInRect(numPadHB, x_button, y_button)) {
 	
 	//numPad() returns 0 on esc, 1 on success and -1 on failure
-					leave = numPad1(mainWindow, rendererRoom1);
+					leave = numPad1(mainWindow, rendererRoom1, attempts);
 
 					if (-1 == leave) {
 						Mix_HaltMusic();

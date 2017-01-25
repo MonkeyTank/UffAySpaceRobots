@@ -100,7 +100,7 @@ void beer() {
 					SDL_RenderClear(rendererPopup);
 					SDL_RenderCopy(rendererPopup, error, NULL, NULL);
 					SDL_RenderPresent(rendererPopup);
-					SDL_Delay(2000);
+					SDL_Delay(5000);
 					break;
 
 				}

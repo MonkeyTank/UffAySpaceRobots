@@ -2,9 +2,11 @@
 
 void mensa() {
 
+	SDL_Rect mensa_rect = { 360, 340, 1200, 400 };
+
 	//build window
 	SDL_Window *popup;
-	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 400, SDL_WINDOW_BORDERLESS);
+	popup = SDL_CreateWindow("popup", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_BORDERLESS);
 	if (popup == NULL) {
 		fprintf(stderr, "Window could not be created! SDL_Error: %s", SDL_GetError());
 	}
@@ -69,9 +71,9 @@ void mensa() {
 
 				if (SDLK_3 == press.sym || SDLK_KP_3 == press.sym) {
 					SDL_RenderClear(rendererPopup);
-					SDL_RenderCopy(rendererPopup, idiot, NULL, NULL);
+					SDL_RenderCopy(rendererPopup, idiot, NULL, &mensa_rect);
 					SDL_RenderPresent(rendererPopup);
-					SDL_Delay(5000);
+					SDL_Delay(6000);
 				}
 
 			default:
@@ -79,7 +81,7 @@ void mensa() {
 			}
 
 			SDL_RenderClear(rendererPopup);
-			SDL_RenderCopy(rendererPopup, pad, NULL, NULL);
+			SDL_RenderCopy(rendererPopup, pad, NULL, &mensa_rect);
 			render(dimensions.x, dimensions.y, arrow, &dimensions, rendererPopup);
 			SDL_RenderPresent(rendererPopup);
 		}

@@ -73,7 +73,7 @@ void crossword() {
 					SDL_RenderClear(rendererPopup);
 					SDL_RenderCopy(rendererPopup, hint_hex, NULL, NULL);
 					SDL_RenderPresent(rendererPopup);
-					SDL_Delay(2000);
+					SDL_Delay(5000);
 					break;
 				}
 
@@ -103,7 +103,7 @@ void crossword() {
 							SDL_RenderClear(rendererPopup);
 							SDL_RenderCopy(rendererPopup, hint_hex, NULL, NULL);
 							SDL_RenderPresent(rendererPopup);
-							SDL_Delay(2000);
+							SDL_Delay(5000);
 							break;
 						}
 					}
@@ -117,7 +117,7 @@ void crossword() {
 						SDL_RenderClear(rendererPopup);
 						SDL_RenderCopy(rendererPopup, error, NULL, NULL);
 						SDL_RenderPresent(rendererPopup);
-						SDL_Delay(2000);
+						SDL_Delay(5000);
 						break;
 					}
 

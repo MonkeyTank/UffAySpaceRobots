@@ -2,8 +2,11 @@
 
 int room2(SDL_Window *mainWindow) {
 
-	//create hitboxes
+	//attempts to enter right code
+	int attempts[1];
+	attempts[0] = 0;
 
+	//create hitboxes
 	SDL_Rect colorHB = { COLOR_X, COLOR_Y, COLOR_WIDTH, COLOR_HEIGHT };
 	SDL_Rect mensaHB = { MENSA_X, MENSA_Y, MENSA_WIDTH, MENSA_HEIGHT };
 	SDL_Rect thingHB = { THING_X, THING_Y, THING_WIDTH, THING_HEIGHT };
@@ -81,7 +84,7 @@ int room2(SDL_Window *mainWindow) {
 				if (XYInRect(numPadHB, x_button, y_button)) {
 
 	//numPad() returns 0 on esc, 1 on success and -1 on failure
-					leave = numPad2(mainWindow, rendererRoom2);
+					leave = numPad2(mainWindow, rendererRoom2, attempts);
 
 					if (-1 == leave) {
 						Mix_HaltMusic();

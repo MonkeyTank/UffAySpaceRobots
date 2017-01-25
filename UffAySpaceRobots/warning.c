@@ -50,7 +50,7 @@ int warning(int num) {
 		SDL_RenderPresent(rendererPopup);
 		Mix_PlayChannel(-1, warn, 0);
 
-		SDL_Delay(3000);
+		SDL_Delay(5000);
 	} 
 	else if (1 == num) {
 		warning = loadImage("images/numpad/robotSkullWarning2.bmp", rendererPopup);
@@ -59,7 +59,7 @@ int warning(int num) {
 		SDL_RenderPresent(rendererPopup);
 		Mix_PlayChannel(-1, warn, 0);
 
-		SDL_Delay(3000);
+		SDL_Delay(5000);
 	}
 	else {
 		warning = loadImage("images/numpad/robotSkullAlarm.bmp", rendererPopup);
@@ -68,7 +68,7 @@ int warning(int num) {
 		SDL_RenderPresent(rendererPopup);
 		Mix_PlayChannel(-1, alarm, 0);
 
-		SDL_Delay(3000);
+		SDL_Delay(5000);
 		
 		Mix_FreeChunk(alarm);
 		Mix_FreeChunk(warn);

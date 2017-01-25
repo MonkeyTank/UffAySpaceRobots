@@ -1,9 +1,9 @@
 #include "numPad2.h"
 
-int numPad2(SDL_Window *mainWindow, SDL_Renderer *rendererPopup) {
+int numPad2(SDL_Window *mainWindow, SDL_Renderer *rendererPopup, int *attempts) {
 
-	int warnings = 0;
-	SDL_Rect pad_rect = { 610, 90, 700, 900 };
+	
+	SDL_Rect pad_rect = { 669, 0, 582, 1080 };
 
 	SDL_Rect ESC = { ESC_X, ESC_Y, BUTTON_W, BUTTON_H2 };
 	SDL_Rect ZERO = { ZERO_X, ZERO_Y, BUTTON_W, BUTTON_H2 };
@@ -53,6 +53,7 @@ int numPad2(SDL_Window *mainWindow, SDL_Renderer *rendererPopup) {
 			switch (keys.type) {
 
 			case SDL_MOUSEBUTTONDOWN:
+				while (SDL_PollEvent(&keys));
 				x = keys.button.x;
 				y = keys.button.y;
 
@@ -69,23 +70,27 @@ int numPad2(SDL_Window *mainWindow, SDL_Renderer *rendererPopup) {
 				if (XYInRect(NINE, x, y)) {
 
 					keys.type = 0;
-					keys = getKey(keys);
-					press = keys.key.keysym;
+					keys = getClick(keys);
+					x = keys.button.x;
+					y = keys.button.y;
 
 					if (XYInRect(ONE, x, y)) {
 						keys.type = 0;
-						keys = getKey(keys);
-						press = keys.key.keysym;
+						keys = getClick(keys);
+						x = keys.button.x;
+						y = keys.button.y;
 
 						if (XYInRect(ONE, x, y)) {
 							keys.type = 0;
-							keys = getKey(keys);
-							press = keys.key.keysym;
+							keys = getClick(keys);
+							x = keys.button.x;
+							y = keys.button.y;
 
 							if (XYInRect(FOUR, x, y)) {
 								keys.type = 0;
-								keys = getKey(keys);
-								press = keys.key.keysym;
+								keys = getClick(keys);
+								x = keys.button.x;
+								y = keys.button.y;
 
 								if (XYInRect(ENTER, x, y)) {
 
@@ -104,14 +109,14 @@ int numPad2(SDL_Window *mainWindow, SDL_Renderer *rendererPopup) {
 					Mix_PauseMusic();
 
 					//warning returns 0 on death
-					if (0 == warning(warnings)) {
+					if (0 == warning(attempts[0])) {
 						SDL_FreeCursor(cursor);
 						SDL_ShowCursor(SDL_DISABLE);
 						SDL_DestroyTexture(pad);
 						return -1;
 					}
 					Mix_ResumeMusic();
-					warnings++;
+					attempts[0]++;
 					break;
 				}
 
@@ -170,7 +175,7 @@ int numPad2(SDL_Window *mainWindow, SDL_Renderer *rendererPopup) {
 				if (SDLK_RETURN == press.sym || SDLK_RETURN2 == press.sym) {
 					Mix_PauseMusic();
 					//warning returns 0 on death
-					if (0 == warning(warnings)) {
+					if (0 == warning(attempts[0])) {
 
 						//hide cursor and delete second one
 						//free everything
@@ -182,7 +187,7 @@ int numPad2(SDL_Window *mainWindow, SDL_Renderer *rendererPopup) {
 					}
 
 					Mix_ResumeMusic();
-					warnings++;
+					attempts[0]++;
 					break;
 				}
 
