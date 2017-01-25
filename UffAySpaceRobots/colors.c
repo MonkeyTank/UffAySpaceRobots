@@ -50,7 +50,7 @@ void colors() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensions = { 1690, 702, 50, 50 };
+	SDL_Rect dimensions = { 1780, 866, 50, 50 };
 
 	while (quit) {
 		while (SDL_PollEvent(&keys)) {

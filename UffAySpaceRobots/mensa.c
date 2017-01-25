@@ -49,7 +49,7 @@ void mensa() {
 	int quit = 1;
 
 	//set dimensions for backArrow hitbox
-	SDL_Rect dimensions = { 1150, 350, 50, 50 };
+	SDL_Rect dimensions = { 1510, 690, 50, 50 };
 
 	while (quit) {
 		while (SDL_PollEvent(&mouse)) {
